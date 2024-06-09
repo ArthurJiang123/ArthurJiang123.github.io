@@ -1,0 +1,47 @@
+body.dark-mode{
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.showbar{
+    cursor: pointer;
+}
+
+.showbar:hover{
+    text-decoration: underline;
+}
+
+#homeButton, #hobbyButton{
+    cursor: pointer;
+}
+
+body {
+    padding-top: 170px;
+    padding-bottom: 80px;
+    background-color: #FAF3E0; 
+}
+
+@media (min-width: 960px) {
+    body {
+        padding-top: 120px;
+    }
+}
+
+footer {
+    background-color: darkcyan;
+    height: 50px;
+    color:whitesmoke;
+    font-family:'Times New Roman', Times, serif;
+}
+
+h2:hover {
+    color: #007BFA;
+    transition: color 0.4s;
+}
+
+
+@media (max-width: 720px) {
+    .fixed-width {
+      width: 219px;
+    }
+}
