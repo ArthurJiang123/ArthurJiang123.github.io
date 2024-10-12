@@ -112,14 +112,15 @@
 
     <div class="content">
         <section id="home">
-            <div class="container">    
-                <h2>About me</h2>
-                <p>Name: Jiahao(Arthur) Jiang</p>
+            <div class="container">  
+                
+<!-- Introduction Section -->
+                <h2>Jiahao(Arthur) Jiang</h2>
                 <p>Email(School): jiahao.jiang@mail.mcgill.ca</p>
                 <p>Email(Work): arthurjiang27@gmail.com</p>
                 <p>Gender: Male</p>
                 <p>Location: Montreal, QC, Canada</p>
-
+<!-- Education Section -->
                 <h2>Education</h2>
                 <ul>
                     <li>
@@ -139,7 +140,7 @@
                     </li>
                 </ul>
                 
-
+<!-- About Me Section -->
                 <h2>About me</h2>
 
                 <div class="skillcard-container">
@@ -213,28 +214,25 @@
                         </div>
                     </div>
                 </div>
-                <h2>Work/Research</h2>
-                <p class="fst-italic showbar" data-toggle="collapse" data-target="#workContent">[click to show more]</p>
-                <div id="workContent" class="collapse">
-                    <ul>
-                        <li>
-                            <h4>Full AI Project</h4>
-                            <p>Supervisor: Prof. Joseph Vybihal (May 2023 - Present)</p>
-                            <p>Role: Conducted a theoretical and practical exploration of a newly proposed AI model. Implemented an AI model from scratch following best practices. The model successfully passed a carefully designed simulation.</p>
-                        </li>
-                        <li>
-                            <h4>Object Avoidance & Motion Planning</h4>
-                            <p>Supervisor: Prof. Joseph Vybihal (May 2023 - Aug 2023)</p>
-                            <p>Role: Explored and applied modern object avoidance algorithms & approaches. Co-implemented the optical-flow algorithm that can give motion recommendations in 4 directions.</p>
-                        </li>
-                        <li>
-                            <h4>Healthy UI - Youtube</h4>
-                            <p>Supervisor: Prof. Joseph Vybihal (May 2023 - Aug 2023)</p>
-                            <p>Role: Co-designed a user interface that aims to moderate the negative impact brought by videos with extreme ideas/thoughts on the audience. The survey shows a general positive feedback on the design.</p>
-                        </li>
-                    </ul>
+
+<!-- Work Section -->
+                <div class="container">
+                    <h2>Work Experience</h2>
+                    <div class="mb-3">
+                        <button class="btn btn-sm btn-secondary" id="expandAllWork">Expand All</button>
+                        <button class="btn btn-sm btn-secondary" id="collapseAllWork">Collapse All</button>
+                    </div>
+                    <div id="workSection"></div>
+
+                    <h2>Research Experience</h2>
+                    <div class="mb-3">
+                        <button class="btn btn-sm btn-secondary" id="expandAllResearch">Expand All</button>
+                        <button class="btn btn-sm btn-secondary" id="collapseAllResearch">Collapse All</button>
+                    </div>
+                    <div id="researchSection"></div>
                 </div>
-                
+
+    <!-- Language Section -->
                 <h2>Languages</h2>
                 <p>I speak native-level Chinese (Mandarin), fluent English, basic French, and basic Japanese.</p>
             </div>
@@ -330,8 +328,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+    <script src="js/loadWorkResearch.js"></script>
+
     <script>
+        
         let IG1Count = 0; // # of pics in IG1
         const IG1 = ['img/sy2.jpg', 'img/sy3.jpg'];
 

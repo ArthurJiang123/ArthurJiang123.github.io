@@ -1,0 +1,1 @@
+Mobile Development Intern|June 1st 2024 - July 31st 2024|iSoftStone|Contributed to developing an automobile insurance system. Used Java with Spring, Spring Boot, and MyBatis-Plus for the backend. Created user interfaces with HTML, CSS, JavaScript, jQuery and Ajax. Worked with Oracle and MySQL databases.

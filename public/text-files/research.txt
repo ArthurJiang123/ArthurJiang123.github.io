@@ -1,0 +1,3 @@
+Full AI Project|May 2023 - Present|Supervisor: Prof. Joseph Vybihal|Collaboraitvely explored a newly proposed AI model, implemented it from scratch, and conducted hospital-delivery simulations. Currently contributing to the edition of the paper.
+Healthy UI - Youtube|May 2023 - Aug 2023|Supervisor: Prof. Joseph Vybihal|Designed a UI to moderate extreme video content's impact, receiving over 80% positive survey feedback.
+Object Avoidance & Motion Planning|May 2023 - Aug 2023|Supervisor: Prof. Joseph Vybihal|Role: Explored and applied modern object avoidance algorithms & approaches. Co-implemented the optical-flow algorithm that can give motion recommendations in 4 directions with an accuracy of over 60%.
