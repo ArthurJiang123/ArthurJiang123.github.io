@@ -1,0 +1,82 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    padding-top: 70px;
+    padding-bottom: 80px;
+    background-color: #F0F2F5;
+    color:#333;
+}
+
+.navbar {
+    background-color: #007BFF;
+}
+
+.nav-link {
+    color: #FFF;
+}
+
+.nav-link.active {
+    font-weight: bold;
+}
+
+
+body.dark-mode{
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.showbar{
+    cursor: pointer;
+}
+
+
+.showbar:hover{
+    text-decoration: underline;
+}
+
+#homeButton, #hobbyButton{
+    cursor: pointer;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+body {
+    padding-top: 170px;
+    padding-bottom: 80px;
+    background-color: #FAF3E0; 
+}
+
+@media (min-width: 960px) {
+    body {
+        padding-top: 120px;
+    }
+}
+
+
+footer {
+    background-color: #343A40;
+    height: 50px;
+    color: #FFF;
+    text-align: center;
+    font-family:'Times New Roman', Times, serif;
+}
+
+
+h2 {
+    transition: color 0.4s, transform 0.4s;
+}
+
+h2:hover {
+    color: #007BFA;
+    transition:color 0.4s, transform, 0.4s;
+    transform: scale(1.05);
+}
+
+
+@media (max-width: 720px) {
+    .fixed-width {
+      width: 219px;
+    }
+}

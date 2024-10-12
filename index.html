@@ -6,198 +6,227 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jiahao's Website</title>
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/mini5.css">
 
-    <script src="js/bootstrap.bundle.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            padding-top: 70px;
+            background-color: #F0F2F5;
+            color: #333;
+        }
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        .sidebar {
+            height: 100%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #007BFF;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 25px;
+            color: white;
+            display: block;
+        }
 
+        .sidebar a:hover {
+            background-color: #575fcf;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #343A40;
+            height: 50px;
+            color: #FFF;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        h2 {
+            background-color: #007BFF;
+            color: #FFF;
+            text-align: center;
+            padding: 15px 0;
+            border-radius: 10px;
+        }
+
+        .project {
+            background-color: #FFF;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .project h3 {
+            margin-top: 0;
+        }
+
+        .dark-mode {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        .showbar {
+            cursor: pointer;
+        }
+
+        .showbar:hover {
+            text-decoration: underline;
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg fixed-top">
-            <div class="container-fluid">
-                <a class="navbar-brand"><i class="fas fa-user"></i> Jiang, Jiahao</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link active" id="homeButton">Home</a>
+    <div class="sidebar">
+        <a href="#" id="homeButton"><i class="fas fa-home"></i> Home</a>
+        <a href="#" id="hobbyButton"><i class="fas fa-heart"></i> Hobbies</a>
+        <a href="#" id="projectButton"><i class="fas fa-briefcase"></i> Projects</a>
+        <button class="btn btn-primary w-100 mt-3" id="darkModeToggle">Change Color</button>
+    </div>
+
+    <div class="content">
+        <section id="home">
+            <div class="container">    
+                <h2>About me</h2>
+                <p>Year of birth: 2002</p>
+                <p>My hometown: <a href="https://en.wikipedia.org/wiki/Jinan" target="_blank">Jinan</a> (City)</p>
+                <p>Phone: xxx-xxx-xxxx</p>
+                <p>Email: jiahao.jiang@mail.mcgill.ca</p>
+                <p>Gender: Male</p>
+                <p>Address: Montreal, QC, Canada</p>
+                
+                <h2>Summary of myself</h2>
+                <ul>
+                    <li>Dependable, hardworking individual</li>
+                    <li>Decent learning ability, quick adaptive capability to a new environment, and good coordination skill</li>
+                    <li>Both a detail-oriented team player and a solo player</li>
+                    <li>Willingness to embrace challenges and get things done</li>
+                </ul>
+                
+                <p>I spent 18 years living in Jinan, experiencing 9 years of traditional education, and 3 years of international education.</p>
+                <p>In Summer 2021, I flew 10,000 kilometers from Jinan to Montreal.</p>
+                <p>Currently, I am an undergrad at McGill University.</p>
+
+                <h2>Education</h2>
+                <ul>
+                    <li>
+                        <h4>McGill University</h4>
+                        <p>Bachelor's Degree in Software Engineering</p>
+                        <p>Expect to graduate in 2025</p>
+                    </li>
+                    <li>
+                        <h4>High School Attached to Shandong Normal University</h4>
+                        <p>Graduated in 2021</p>
+                    </li>
+                </ul>
+                
+                <h2 id="skillsToggle">Skills</h2>
+                <p class="fst-italic showbar" data-toggle="collapse" data-target="#skillsContent">[click to show more]</p>
+                <div id="skillsContent" class="collapse">
+                    <ul>
+                        <li>Backend Programming: Programming in Java and Python</li>
+                        <li>Frontend Programming: JavaScript, CSS, HTML, Bootstrap</li>
+                        <li>Database: MySQL, Redis</li>
+                        <li>Essential knowledge: data structures, algorithms, operating system, software design principles</li>
+                    </ul>
+                </div>
+                
+                <h2>Work/Research</h2>
+                <p class="fst-italic showbar" data-toggle="collapse" data-target="#workContent">[click to show more]</p>
+                <div id="workContent" class="collapse">
+                    <ul>
+                        <li>
+                            <h4>Full AI Project</h4>
+                            <p>Supervisor: Prof. Joseph Vybihal (May 2023 - Present)</p>
+                            <p>Role: Conducted a theoretical and practical exploration of a newly proposed AI model. Implemented an AI model from scratch following best practices. The model successfully passed a carefully designed simulation.</p>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="hobbyButton">Hobbies</a>
+                        <li>
+                            <h4>Object Avoidance & Motion Planning</h4>
+                            <p>Supervisor: Prof. Joseph Vybihal (May 2023 - Aug 2023)</p>
+                            <p>Role: Explored and applied modern object avoidance algorithms & approaches. Co-implemented the optical-flow algorithm that can give motion recommendations in 4 directions.</p>
                         </li>
-                        <li class="nav-item">
-                            <button class="btn btn-primary" id="darkModeToggle">Change Color</button>
+                        <li>
+                            <h4>Healthy UI - Youtube</h4>
+                            <p>Supervisor: Prof. Joseph Vybihal (May 2023 - Aug 2023)</p>
+                            <p>Role: Co-designed a user interface that aims to moderate the negative impact brought by videos with extreme ideas/thoughts on the audience. The survey shows a general positive feedback on the design.</p>
                         </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
-    </header>
-
-
-    <main>
-        <section id="home">
-            <div class="container">    
-                <div class="row">
-                    <div class="col">
-                        <h2>About me</h2>
-                        <p>Year of birth: 2002</p>
-                        <p>My hometown: <a href="https://en.wikipedia.org/wiki/Jinan" target="_blank">Jinan</a> (City)</p>
-                        <p>Phone: xxx-xxx-xxxx</p>
-                        <p>Email: jiahao.jiang@mail.mcgill.ca</p>
-                        <p>Gender: Male</p>
-                        <p>Address: Montreal, QC, Canada</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h3>Summary of myself:</h3>
-                        <ul>
-                            <li>Dependable, hardworking individual</li>
-                            <li>Decent learning ability, quick adaptive capability to a new environment, and good coordination skill</li>
-                            <li>Both a detail-oriented team player and a solo player</li>
-                            <li>Willingness to embrace challenges and get things done</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <p>I spent 18 years living in Jinan, experiencing 9 years of traditional education, and 3 years of international education.</p>
-                        <p>In Summer 2021, I flew 10,000 kilometers from Jinan to Montreal.</p>
-                        <p>Currently, I am an undergrad at McGill University.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h2>Education</h2>
-                        <ul>
-                            <li>
-                                <h4>McGill University</h4>
-                                <p>Bachelor's Degree in Software Engineering</p>
-                                <p>Expect to graduate in 2025</p>
-                            </li>
-                            <li>
-                                <h4>High School Attached to Shandong Normal University</h4>
-                                <p>Graduated in 2021</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h2 id="skillsToggle">Skills</h2>
-                        <p class="fst-italic showbar" data-toggle="collapse" data-target="#skillsContent">[click to show more]</p>
-                        <div id="skillsContent" class="collapse">
-                            <ul>
-                                <li>Backend Programming: Programming in Java and Python</li>
-                                <li>Frontend Programming: JavaScript, CSS, HTML, Bootstrap</li>
-                                <li>Database: MySQL, Redis</li>
-                                <li>Essential knowledge: data structures, algorithms, operating system, software design principles</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h2>Work/Research</h2>
-                        <p class="fst-italic showbar" data-toggle="collapse" data-target="#workContent">[click to show more]</p>
-                        <div id="workContent" class="collapse">
-                            <ul>
-                                <li>
-                                    <h4>Full AI Project</h4>
-                                    <p>Supervisor: Prof. Joseph Vybihal (May 2023 - Present)</p>
-                                    <p>Role: Conducted a theoretical and practical exploration of a newly proposed AI model. Implemented an AI model from scratch following best practices. The model successfully passed a carefully designed simulation.</p>
-                                </li>
-                                <li>
-                                    <h4>Object Avoidance & Motion Planning</h4>
-                                    <p>Supervisor: Prof. Joseph Vybihal (May 2023 - Aug 2023)</p>
-                                    <p>Role: Explored and applied modern object avoidance algorithms & approaches. Co-implemented the optical-flow algorithm that can give motion recommendations in 4 directions.</p>
-                                </li>
-                                <li>
-                                    <h4>Healthy UI - Youtube</h4>
-                                    <p>Supervisor: Prof. Joseph Vybihal (May 2023 - Aug 2023)</p>
-                                    <p>Role: Co-designed a user interface that aims to moderate the negative impact brought by videos with extreme ideas/thoughts on the audience. The survey shows a general positive feedback on the design.</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h2>Languages</h2>
-                        <p>I speak native-level Chinese (Mandarin), fluent English, basic French, and basic Japanese.</p>
-                    </div>
-                </div>
+                
+                <h2>Languages</h2>
+                <p>I speak native-level Chinese (Mandarin), fluent English, basic French, and basic Japanese.</p>
             </div>
         </section>
 
         <section id="hobby" style="display:none">
             <div class="container">
+                <h2>My Hobbies</h2>
+                <ul>
+                    <li>In my childhood, I loved painting: color painting, oil painting, sketching, etc.</li>
+                    <li>I have always been enjoying movies.</li>
+                    <li>I also love travelling, with myself or with friends/family.</li>
+                    <li>Playing games is also a pleasure for me. I had been one of the WOW (World of Warcraft) players until Blizzard terminated the services of its servers in China.</li>
+                </ul>
+                
+                <h2>My activities (travelling)</h2>
                 <div class="row">
-                    <div class="col">
-                        <h2>My Hobbies</h2>
-                        <ul>
-                            <li>In my childhood, I loved painting: color painting, oil painting, sketching, etc.</li>
-                            <li>I have always been enjoying movies.</li>
-                            <li>I also love travelling, with myself or with friends/family.</li>
-                            <li>Playing games is also a pleasure for me. I had been one of the WOW (World of Warcraft) players until Blizzard terminated the services of its servers in China.</li>
-                        </ul>
+                    <div class="col-6">
+                        <li>(May 2021, in Sanya)</li>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <h2>My activities (travelling)</h2>
-                        <div class="row">
-                            <div class="col-6">
-                                <li>(May 2021, in Sanya)</li>
-                            </div>
-                        </div>
-                        <div class="row" id="IG1">
-                            <div class="col-sm-6 col-md-4">
-                                <div class="card mb-4">
-                                    <img src="img/sy1.jpg" class="card-img-top" alt="sanya1">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3 my-3">
-                                <button class="btn btn-primary" id="addImage1">See more!</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <li>(July 2022, in Jinan)</li>
-                            </div>
-                        </div>
-                        <div class="row" id="IG2">
-                            <div class="col-sm-6 col-md-4">
-                                <div class="card mb-4">
-                                    <img src="img/jn1.jpg" class="card-img-top" alt="jinan1">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3 my-3">
-                                <button class="btn btn-primary" id="addImage2">See more!</button>
-                            </div>
+                <div class="row" id="IG1">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="card mb-4">
+                            <img src="img/sy1.jpg" class="card-img-top" alt="sanya1">
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
-                        <h2>Message Board</h2>
-                        <!-- Messages will be added here dynamically -->
+                    <div class="col-3 my-3">
+                        <button class="btn btn-primary" id="addImage1">See more!</button>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-6">
+                        <li>(July 2022, in Jinan)</li>
+                    </div>
+                </div>
+                <div class="row" id="IG2">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="card mb-4">
+                            <img src="img/jn1.jpg" class="card-img-top" alt="jinan1">
+                       ```html
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 my-3">
+                        <button class="btn btn-primary" id="addImage2">See more!</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container">
+                <h2>Message Board</h2>
+                <div id="message"></div>
                 <div class="row justify-content-end">
                     <div class="col-2">
                         <button class="btn btn-primary ms-2" id="addMsg">Leave a comment</button>
@@ -205,9 +234,27 @@
                 </div>
             </div>
         </section>
-    </main>
+        
+        <section id="projects" style="display:none">
+            <div class="container">
+                <h2>Projects</h2>
+                <div class="project">
+                    <h3>Project 1</h3>
+                    <p>Description of project 1.</p>
+                </div>
+                <div class="project">
+                    <h3>Project 2</h3>
+                    <p>Description of project 2.</p>
+                </div>
+                <div class="project">
+                    <h3>Project 3</h3>
+                    <p>Description of project 3.</p>
+                </div>
+            </div>
+        </section>
+    </div>
 
-    <footer class="fixed-bottom">
+    <footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -217,8 +264,6 @@
         </div>
     </footer>
 
-
-    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -263,16 +308,30 @@
             e.preventDefault();
             document.getElementById('homeButton').classList.add("active");
             document.getElementById('hobbyButton').classList.remove("active");
+            document.getElementById('projectButton').classList.remove("active");
             document.getElementById("home").style.display = "block";
             document.getElementById("hobby").style.display = "none";
+            document.getElementById("projects").style.display = "none";
         });
 
         document.getElementById("hobbyButton").addEventListener("click", function (e) {
             e.preventDefault();
             document.getElementById('hobbyButton').classList.add("active");
             document.getElementById('homeButton').classList.remove("active");
+            document.getElementById('projectButton').classList.remove("active");
             document.getElementById("home").style.display = "none";
             document.getElementById("hobby").style.display = "block";
+            document.getElementById("projects").style.display = "none";
+        });
+
+        document.getElementById("projectButton").addEventListener("click", function (e) {
+            e.preventDefault();
+            document.getElementById('projectButton').classList.add("active");
+            document.getElementById('homeButton').classList.remove("active");
+            document.getElementById('hobbyButton').classList.remove("active");
+            document.getElementById("home").style.display = "none";
+            document.getElementById("hobby").style.display = "none";
+            document.getElementById("projects").style.display = "block";
         });
 
         document.getElementById("addMsg").addEventListener("click", function () {

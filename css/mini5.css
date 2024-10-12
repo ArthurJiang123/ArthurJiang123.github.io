@@ -1,82 +1,80 @@
 body {
     font-family: 'Roboto', sans-serif;
     padding-top: 70px;
-    padding-bottom: 80px;
     background-color: #F0F2F5;
-    color:#333;
+    color: #333;
 }
 
-.navbar {
+.sidebar {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
     background-color: #007BFF;
+    overflow-x: hidden;
+    padding-top: 20px;
 }
 
-.nav-link {
-    color: #FFF;
+.sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
 }
 
-.nav-link.active {
-    font-weight: bold;
+.sidebar a:hover {
+    background-color: #575fcf;
 }
 
-
-body.dark-mode{
-    background-color: #343a40;
-    color: #ffffff;
+.content {
+    margin-left: 250px;
+    padding: 20px;
 }
-
-.showbar{
-    cursor: pointer;
-}
-
-
-.showbar:hover{
-    text-decoration: underline;
-}
-
-#homeButton, #hobbyButton{
-    cursor: pointer;
-}
-
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
-}
-
-body {
-    padding-top: 170px;
-    padding-bottom: 80px;
-    background-color: #FAF3E0; 
-}
-
-@media (min-width: 960px) {
-    body {
-        padding-top: 120px;
-    }
-}
-
 
 footer {
     background-color: #343A40;
     height: 50px;
     color: #FFF;
     text-align: center;
-    font-family:'Times New Roman', Times, serif;
+    padding: 10px 0;
 }
-
 
 h2 {
-    transition: color 0.4s, transform 0.4s;
+    background-color: #007BFF;
+    color: #FFF;
+    text-align: center;
+    padding: 15px 0;
+    border-radius: 10px;
 }
 
-h2:hover {
-    color: #007BFA;
-    transition:color 0.4s, transform, 0.4s;
-    transform: scale(1.05);
+.project {
+    background-color: #FFF;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.project h3 {
+    margin-top: 0;
+}
 
-@media (max-width: 720px) {
-    .fixed-width {
-      width: 219px;
-    }
+.dark-mode {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.showbar {
+    cursor: pointer;
+}
+
+.showbar:hover {
+    text-decoration: underline;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
 }
