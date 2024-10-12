@@ -10,42 +10,49 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/mini5.css">
+    <link rel="stylesheet" href="css/card-flip.css"> <!-- 修改此路径为CSS文件实际路径 -->
+
 
     <style>
         body {
             font-family: 'Roboto', sans-serif;
+            font-weight: 400; /* Default font-weight for normal text */
             padding-top: 70px;
-            background-color: #F0F2F5;
+            background-color: #F2CC8F;
             color: #333;
         }
 
-        .sidebar {
-            height: 100%;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #007BFF;
-            overflow-x: hidden;
-            padding-top: 20px;
+        .sidebar{
+            background-color: #E07A5F;
         }
-
         .sidebar a {
             padding: 15px 25px;
             text-decoration: none;
-            font-size: 25px;
-            color: white;
+            font-weight: 700;
+            font-size:25px;
+            color:white;
             display: block;
+            background-color: #E07A5F;
         }
 
         .sidebar a:hover {
             background-color: #575fcf;
         }
-
-        .content {
-            margin-left: 250px;
-            padding: 20px;
+        
+        h2 {
+            background-color: #81B29A;
+            color: #FFF;
+            text-align: center;
+            padding: 15px 0;
+            border-radius: 10px;
+            font-weight: 700;
         }
+        
+        .project h3 {
+            margin-top: 0;
+            font-weight: 700;
+        }
+
 
         footer {
             background-color: #343A40;
@@ -53,31 +60,16 @@
             color: #FFF;
             text-align: center;
             padding: 10px 0;
+            font-weight: 400;
         }
 
-        h2 {
-            background-color: #007BFF;
-            color: #FFF;
-            text-align: center;
-            padding: 15px 0;
-            border-radius: 10px;
-        }
-
-        .project {
-            background-color: #FFF;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .project h3 {
-            margin-top: 0;
-        }
-
-        .dark-mode {
+        .dark-mode-background {
             background-color: #343a40;
             color: #ffffff;
+        }
+
+        .dark-mode-title{
+            background-color: #81B29A;
         }
 
         .showbar {
@@ -92,6 +84,21 @@
             height: 200px;
             object-fit: cover;
         }
+
+        /* Image inside the card */
+        .skillcard img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        /* Title on the back of the card */
+        .sikillcard-back h4 {
+            margin-bottom: 10px;
+        }
+
+
     </style>
 </head>
 
@@ -100,37 +107,30 @@
         <a href="#" id="homeButton"><i class="fas fa-home"></i> Home</a>
         <a href="#" id="hobbyButton"><i class="fas fa-heart"></i> Hobbies</a>
         <a href="#" id="projectButton"><i class="fas fa-briefcase"></i> Projects</a>
-        <button class="btn btn-primary w-100 mt-3" id="darkModeToggle">Change Color</button>
+        <button class="btn btn-primary w-100 mt-3" style="background-color:#81B29A" id="darkModeToggle">dark/light mode</button>
     </div>
 
     <div class="content">
         <section id="home">
             <div class="container">    
                 <h2>About me</h2>
-                <p>Year of birth: 2002</p>
-                <p>My hometown: <a href="https://en.wikipedia.org/wiki/Jinan" target="_blank">Jinan</a> (City)</p>
-                <p>Phone: xxx-xxx-xxxx</p>
-                <p>Email: jiahao.jiang@mail.mcgill.ca</p>
+                <p>Name: Jiahao(Arthur) Jiang</p>
+                <p>Email(School): jiahao.jiang@mail.mcgill.ca</p>
+                <p>Email(Work): arthurjiang27@gmail.com</p>
                 <p>Gender: Male</p>
-                <p>Address: Montreal, QC, Canada</p>
-                
-                <h2>Summary of myself</h2>
-                <ul>
-                    <li>Dependable, hardworking individual</li>
-                    <li>Decent learning ability, quick adaptive capability to a new environment, and good coordination skill</li>
-                    <li>Both a detail-oriented team player and a solo player</li>
-                    <li>Willingness to embrace challenges and get things done</li>
-                </ul>
-                
-                <p>I spent 18 years living in Jinan, experiencing 9 years of traditional education, and 3 years of international education.</p>
-                <p>In Summer 2021, I flew 10,000 kilometers from Jinan to Montreal.</p>
-                <p>Currently, I am an undergrad at McGill University.</p>
+                <p>Location: Montreal, QC, Canada</p>
 
                 <h2>Education</h2>
                 <ul>
                     <li>
+                        <h4>TBD: Graduate Study</h4>
+                        <p>Expected: Software Engineering or Computer Science</p>
+                        <p>Expected: Starts in September 2025</p>
+                    </li>
+                    <li>
                         <h4>McGill University</h4>
                         <p>Bachelor's Degree in Software Engineering</p>
+                        <p>CGPA: 3.94/4.0</p>
                         <p>Expect to graduate in 2025</p>
                     </li>
                     <li>
@@ -139,17 +139,80 @@
                     </li>
                 </ul>
                 
-                <h2 id="skillsToggle">Skills</h2>
-                <p class="fst-italic showbar" data-toggle="collapse" data-target="#skillsContent">[click to show more]</p>
-                <div id="skillsContent" class="collapse">
-                    <ul>
-                        <li>Backend Programming: Programming in Java and Python</li>
-                        <li>Frontend Programming: JavaScript, CSS, HTML, Bootstrap</li>
-                        <li>Database: MySQL, Redis</li>
-                        <li>Essential knowledge: data structures, algorithms, operating system, software design principles</li>
-                    </ul>
+
+                <h2>About me</h2>
+
+                <div class="skillcard-container">
+                    <div class="skillcard">
+                        <div class="skillcard-front">
+                            <img src="img/card-icons_1/CS1.png" alt="Soft Skill">
+                        </div>
+                        <div class="skillcard-back">
+                            <h4>As an individual</h4>
+                            <p>dependable, responsible, creative problem-solving, critical-thinking, detail-oriented
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                
+
+                <div class="skillcard-container">
+                    <div class="skillcard">
+                        <div class="skillcard-front">
+                            <img src="img/card-icons_1/CS1.png" alt="Foundational Knowledge">
+                        </div>
+                        <div class="skillcard-back">
+                            <h4>As a team member</h4>
+                            <p>Collaborative, good communication skills, adaptability, sense of ownership, and read to embrace challenges!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skillcard-container">
+                    <div class="skillcard">
+                        <div class="skillcard-front">
+                            <img src="img/card-icons_1/backend1.png" alt="Backend">
+                        </div>
+                        <div class="skillcard-back">
+                            <h4>Backend Skills</h4>
+                            <p>Java, Python, C, Spring, Spring Boot, MyBatis</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="skillcard-container">
+                    <div class="skillcard">
+                        <div class="skillcard-front">
+                            <img src="img/card-icons_1/frontend1.png" alt="Frontend">
+                        </div>
+                        <div class="skillcard-back">
+                            <h4>Frontend Skills</h4>
+                            <p>HTML, CSS, JavaScript, Bootstrap, jQuery, React</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="skillcard-container">
+                    <div class="skillcard">
+                        <div class="skillcard-front">
+                            <img src="img/card-icons_1/database1.png" alt="Database">
+                        </div>
+                        <div class="skillcard-back">
+                            <h4>Database Skills</h4>
+                            <p>MySQL, PostgreSQL, Oracle, Redis</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skillcard-container">
+                    <div class="skillcard">
+                        <div class="skillcard-front">
+                            <img src="img/card-icons_1/CS1.png" alt="Availability">
+                        </div>
+                        <div class="skillcard-back">
+                            <h4>CS Knowledge</h4>
+                            <p>Data Structures, Algorithms, Operating Systems, Software Design Principles,
+                                concurrent programming, database query & optimization, distributed systems</p>
+                        </div>
+                    </div>
+                </div>
                 <h2>Work/Research</h2>
                 <p class="fst-italic showbar" data-toggle="collapse" data-target="#workContent">[click to show more]</p>
                 <div id="workContent" class="collapse">
@@ -214,7 +277,7 @@
                     <div class="col-sm-6 col-md-4">
                         <div class="card mb-4">
                             <img src="img/jn1.jpg" class="card-img-top" alt="jinan1">
-                       ```html
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -258,7 +321,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    Last Update: October, 2023. Contact: jiahao.jiang@mail.mcgill.ca
+                    Last Update: October, 2024. Contact: jiahao.jiang@mail.mcgill.ca
                 </div>
             </div>
         </div>
@@ -267,6 +330,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <script>
         let IG1Count = 0; // # of pics in IG1
         const IG1 = ['img/sy2.jpg', 'img/sy3.jpg'];
@@ -350,7 +414,7 @@
         });
 
         document.getElementById("darkModeToggle").addEventListener("click", function () {
-            document.body.classList.toggle("dark-mode");
+            document.body.classList.toggle("dark-mode-background");
         });
     </script>
 </body>
