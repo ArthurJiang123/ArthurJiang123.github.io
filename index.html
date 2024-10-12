@@ -372,22 +372,23 @@
             e.preventDefault();
             document.getElementById('homeButton').classList.add("active");
             document.getElementById('hobbyButton').classList.remove("active");
-            document.getElementById('projectButton').classList.remove("active");
+            //document.getElementById('projectButton').classList.remove("active");
             document.getElementById("home").style.display = "block";
             document.getElementById("hobby").style.display = "none";
-            document.getElementById("projects").style.display = "none";
+            //document.getElementById("projects").style.display = "none";
         });
 
         document.getElementById("hobbyButton").addEventListener("click", function (e) {
             e.preventDefault();
             document.getElementById('hobbyButton').classList.add("active");
             document.getElementById('homeButton').classList.remove("active");
-            document.getElementById('projectButton').classList.remove("active");
+            //document.getElementById('projectButton').classList.remove("active");
             document.getElementById("home").style.display = "none";
             document.getElementById("hobby").style.display = "block";
-            document.getElementById("projects").style.display = "none";
+            //document.getElementById("projects").style.display = "none";
         });
 
+        /**
         document.getElementById("projectButton").addEventListener("click", function (e) {
             e.preventDefault();
             document.getElementById('projectButton').classList.add("active");
@@ -397,6 +398,7 @@
             document.getElementById("hobby").style.display = "none";
             document.getElementById("projects").style.display = "block";
         });
+        */
 
         document.getElementById("addMsg").addEventListener("click", function () {
             var comment = prompt("Any comment/msg for the website?");

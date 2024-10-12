@@ -81,8 +81,8 @@ function loadContent(sectionID, fullFileName){
             const collapseItem = createCollapse(title, date, supervisor, description);
             section.appendChild(collapseItem);
         })
-        .catch(error => console.error("Error loading content:", error));
     }) 
+    .catch(error => console.error("Error loading content:", error));
 }
 loadContent('workSection', 'public/text-files/work.txt');
 loadContent('researchSection', 'public/text-files/research.txt');
