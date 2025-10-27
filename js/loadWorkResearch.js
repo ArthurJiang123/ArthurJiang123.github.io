@@ -29,19 +29,21 @@ document.getElementById('collapseAllResearch').addEventListener('click', () => {
     setAllDescriptions('researchSection', false);
 });
 
- /**
-  *  the primary function, used to create a collapsible item
-  * @param {*} title 
-  * @param {*} date 
-  * @param {*} supervisor 
-  * @param {*} description 
-  * @returns 
-  */
-function createCollapse(title, date, supervisor, description){
-    
-    const item = document.createElement('div');
+/**
+ * Creates a collapsible item.
+ * @param {string} title 
+ * @param {string} date 
+ * @param {string} supervisor 
+ * @param {string[]} descriptionPoints - An array of strings for the description
+ * @returns {HTMLElement}
+ */
+function createCollapse(title, date, supervisor, descriptionPoints) {
 
+    const item = document.createElement('div');
     item.classList.add("mb-3");
+
+    // Create the bullet points from the description array
+    const descriptionList = descriptionPoints.map(point => `<li>${point}</li>`).join('');
 
     item.innerHTML = `
         <div class="d-flex justify-content-between align-items-center">
@@ -51,15 +53,19 @@ function createCollapse(title, date, supervisor, description){
             </div>
             <button class="btn btn-link toggleDescription">Show More</button>
         </div>
-        <p class="description mt-2" style="display: none;">${supervisor}<br>${description}</p>
+        <div class="description mt-2" style="display: none;">
+            <p><strong>${supervisor}</strong></p>
+            <ul>
+                ${descriptionList}
+            </ul>
+        </div>
     `;
 
-    item.querySelector('.toggleDescription').addEventListener('click', function(){
+    item.querySelector('.toggleDescription').addEventListener('click', function () {
         const desc = item.querySelector('.description');
         const isHidden = desc.style.display == 'none';
         desc.style.display = isHidden ? 'block' : 'none';
         this.textContent = isHidden ? 'Show Less' : 'Show More';
-
     });
     return item;
 }
@@ -67,22 +73,28 @@ function createCollapse(title, date, supervisor, description){
 /**
  * load the content upon bootstrap
  * @param {*} sectionID 
- * @param {*} fullFileName 
+ * @param {*} jsonFileName 
  */
-function loadContent(sectionID, fullFileName){
-    fetch(fullFileName)
-    .then(response => response.text())
-    .then(data => {
-        const section = document.getElementById(sectionID);
-        const items = data.trim().split('\n');
-
-        items.forEach(item => {
-            const [title, date, supervisor, description] = item.split('|');
-            const collapseItem = createCollapse(title, date, supervisor, description);
-            section.appendChild(collapseItem);
+function loadContent(sectionID, jsonFileName) {
+    fetch(jsonFileName)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json(); // Parse the response as JSON
         })
-    }) 
-    .catch(error => console.error("Error loading content:", error));
+        .then(data => {
+            const section = document.getElementById(sectionID);
+            
+            // Loop through the array of items from the JSON file
+            data.forEach(item => {
+                const collapseItem = createCollapse(item.title, item.date, item.supervisor, item.description);
+                section.appendChild(collapseItem);
+            });
+        })
+        .catch(error => console.error("Error loading content:", error));
 }
-loadContent('workSection', 'public/text-files/work.txt');
-loadContent('researchSection', 'public/text-files/research.txt');
+
+// Load content from the new JSON files
+loadContent('workSection', 'public/data/work.json');
+loadContent('researchSection', 'public/data/research.json');

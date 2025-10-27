@@ -9,105 +9,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/mini5.css">
-    <link rel="stylesheet" href="css/card-flip.css"> <!-- 修改此路径为CSS文件实际路径 -->
-
-
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            font-weight: 400; /* Default font-weight for normal text */
-            padding-top: 70px;
-            background-color: #F2CC8F;
-            color: #333;
-        }
-
-        .sidebar{
-            background-color: #E07A5F;
-        }
-        .sidebar a {
-            padding: 15px 25px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size:25px;
-            color:white;
-            display: block;
-            background-color: #E07A5F;
-        }
-
-        .sidebar a:hover {
-            background-color: #575fcf;
-        }
-        
-        h2 {
-            background-color: #81B29A;
-            color: #FFF;
-            text-align: center;
-            padding: 15px 0;
-            border-radius: 10px;
-            font-weight: 700;
-        }
-        
-        .project h3 {
-            margin-top: 0;
-            font-weight: 700;
-        }
-
-
-        footer {
-            background-color: #343A40;
-            height: 50px;
-            color: #FFF;
-            text-align: center;
-            padding: 10px 0;
-            font-weight: 400;
-        }
-
-        .dark-mode-background {
-            background-color: #343a40;
-            color: #ffffff;
-        }
-
-        .dark-mode-title{
-            background-color: #81B29A;
-        }
-
-        .showbar {
-            cursor: pointer;
-        }
-
-        .showbar:hover {
-            text-decoration: underline;
-        }
-
-        .card-img-top {
-            height: 200px;
-            object-fit: cover;
-        }
-
-        /* Image inside the card */
-        .skillcard img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
-
-        /* Title on the back of the card */
-        .sikillcard-back h4 {
-            margin-bottom: 10px;
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="css/card-flip.css">
+    <link rel="stylesheet" href="css/main.css"> 
 </head>
 
 <body>
     <div class="sidebar">
         <a href="#" id="homeButton"><i class="fas fa-home"></i> Home</a>
         <a href="#" id="hobbyButton"><i class="fas fa-heart"></i> Hobbies</a>
-        <!-- <a href="#" id="projectButton"><i class="fas fa-briefcase"></i> Projects</a> -->
-        <button class="btn btn-primary w-100 mt-3" style="background-color:#81B29A" id="darkModeToggle">dark/light mode</button>
+        <!-- <button class="btn btn-primary w-100 mt-3" style="background-color:#81B29A" id="darkModeToggle">dark/light mode</button> -->
+        <button class="btn btn-primary w-100 mt-3" id="darkModeToggle">dark/light mode</button>
     </div>
 
     <div class="content">
@@ -115,24 +26,24 @@
             <div class="container">  
                 
 <!-- Introduction Section -->
-                <h2>Jiahao(Arthur) Jiang</h2>
+                <h2>Profile</h2>
+                <p>Name: Arthur Jiang</p>
                 <p>Email(School): jiahao.jiang@mail.mcgill.ca</p>
                 <p>Email(Work): arthurjiang27@gmail.com</p>
-                <p>Gender: Male</p>
-                <p>Location: Montreal, QC, Canada</p>
+                <p>Location: Waterloo, ON, Canada</p>
 <!-- Education Section -->
                 <h2>Education</h2>
                 <ul>
                     <li>
-                        <h4>TBD: Graduate Study</h4>
-                        <p>Expected: Software Engineering or Computer Science</p>
-                        <p>Expected: Starts in September 2025</p>
+                        <h4>University of Waterloo</h4>
+                        <p>Master of Engineering, Electrical and Computer Engineering co-op</p>
+                        <p>From September 2025 to Present</p>
                     </li>
                     <li>
                         <h4>McGill University</h4>
-                        <p>Bachelor's Degree with a major in Computer Science</p>
+                        <p>Bachelor of Science, major in Computer Science</p>
                         <p>CGPA: 3.94/4.0</p>
-                        <p>Expect to graduate in 2025</p>
+                        <p>Graduated with Distinction in 2025</p>
                     </li>
                     <li>
                         <h4>High School Attached to Shandong Normal University</h4>
@@ -175,7 +86,7 @@
                         </div>
                         <div class="skillcard-back">
                             <h4>Backend Skills</h4>
-                            <p>Java, Python, C, Spring, Spring Boot, MyBatis</p>
+                            <p>Java, Python, C, Spring, Spring Boot, MyBatis-Plus</p>
                         </div>
                     </div>
                 </div>
@@ -186,7 +97,7 @@
                         </div>
                         <div class="skillcard-back">
                             <h4>Frontend Skills</h4>
-                            <p>HTML, CSS, JavaScript, Bootstrap, jQuery, React</p>
+                            <p>JavaScript, TypeScript, Bootstrap, jQuery, React</p>
                         </div>
                     </div>
                 </div>
@@ -197,7 +108,7 @@
                         </div>
                         <div class="skillcard-back">
                             <h4>Database Skills</h4>
-                            <p>MySQL, PostgreSQL, Oracle, Redis</p>
+                            <p>MySQL, PostgreSQL, Oracle, Redis, DynamoDB</p>
                         </div>
                     </div>
                 </div>
@@ -319,7 +230,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    Last Update: October, 2024. Contact: jiahao.jiang@mail.mcgill.ca
+                    Last Update: October, 2025. Contact: jiahao.jiang@mail.mcgill.ca
                 </div>
             </div>
         </div>
@@ -329,96 +240,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/loadWorkResearch.js"></script>
-
-    <script>
-        
-        let IG1Count = 0; // # of pics in IG1
-        const IG1 = ['img/sy2.jpg', 'img/sy3.jpg'];
-
-        let IG2Count = 0; // # of pics in IG2
-        const IG2 = ['img/jn2.jpg', 'img/jn3.jpg'];
-
-        document.getElementById('addImage1').addEventListener('click', function () {
-            if (IG1Count < 2) {
-                const gallery = document.querySelector('#IG1');
-                const imageElement = `
-                    <div class="col-sm-6 col-md-4">
-                        <div class="card mb-4">
-                            <img src="${IG1[IG1Count]}" class="card-img-top" alt="sanya${IG1Count + 1}">
-                        </div>
-                    </div>
-                `;
-                gallery.innerHTML += imageElement;
-                IG1Count++;
-            }
-        });
-
-        document.getElementById('addImage2').addEventListener('click', function () {
-            if (IG2Count < 2) {
-                const gallery = document.querySelector('#IG2');
-                const imageElement = `
-                    <div class="col-sm-6 col-md-4">
-                        <div class="card mb-4">
-                            <img src="${IG2[IG2Count]}" class="card-img-top" alt="jinan${IG2Count + 1}">
-                        </div>
-                    </div>
-                `;
-                gallery.innerHTML += imageElement;
-                IG2Count++;
-            }
-        });
-
-        document.getElementById("homeButton").addEventListener("click", function (e) {
-            e.preventDefault();
-            document.getElementById('homeButton').classList.add("active");
-            document.getElementById('hobbyButton').classList.remove("active");
-            //document.getElementById('projectButton').classList.remove("active");
-            document.getElementById("home").style.display = "block";
-            document.getElementById("hobby").style.display = "none";
-            //document.getElementById("projects").style.display = "none";
-        });
-
-        document.getElementById("hobbyButton").addEventListener("click", function (e) {
-            e.preventDefault();
-            document.getElementById('hobbyButton').classList.add("active");
-            document.getElementById('homeButton').classList.remove("active");
-            //document.getElementById('projectButton').classList.remove("active");
-            document.getElementById("home").style.display = "none";
-            document.getElementById("hobby").style.display = "block";
-            //document.getElementById("projects").style.display = "none";
-        });
-
-        /**
-        document.getElementById("projectButton").addEventListener("click", function (e) {
-            e.preventDefault();
-            document.getElementById('projectButton').classList.add("active");
-            document.getElementById('homeButton').classList.remove("active");
-            document.getElementById('hobbyButton').classList.remove("active");
-            document.getElementById("home").style.display = "none";
-            document.getElementById("hobby").style.display = "none";
-            document.getElementById("projects").style.display = "block";
-        });
-        */
-
-        document.getElementById("addMsg").addEventListener("click", function () {
-            var comment = prompt("Any comment/msg for the website?");
-            if (comment) {
-                var commentBoard = document.getElementById("message");
-                commentBoard.innerHTML += `<p>${comment} <a href="#" class="remove-msg">[Remove]</a></p>`;
-            }
-        });
-
-        document.addEventListener("click", function (e) {
-            if (e.target.classList.contains("remove-msg")) {
-                e.preventDefault();
-                e.target.parentElement.remove();
-            }
-        });
-
-        document.getElementById("darkModeToggle").addEventListener("click", function () {
-            document.body.classList.toggle("dark-mode-background");
-        });
-    </script>
+    <script src="js/main.js"></script>
+    
 </body>
 
 </html>

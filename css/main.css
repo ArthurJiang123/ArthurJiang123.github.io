@@ -1,0 +1,173 @@
+/* A modern, professional color palette */
+:root {
+    --bg-light: #ECF0F1;      /* Light Gray Background */
+    --bg-dark: #2C3E50;       /* Dark Blue Background (for dark mode) */
+    --sidebar-color: #34495E; /* Dark Slate Sidebar */
+    --title-color: #1ABC9C;   /* Teal Accent (for H2) */
+    --text-light: #34495E;    /* Dark Gray Text (on light bg) */
+    --text-dark: #EAECEE;     /* Light Gray Text (on dark bg) */
+    --white: #FFFFFF;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    padding-top: 70px;
+    background-color: var(--bg-light); /* Use new color */
+    color: var(--text-light);          /* Use new color */
+    line-height: 1.6; /* Improved spacing for readability */
+}
+
+/* Sidebar Styling */
+.sidebar {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: var(--sidebar-color); /* Use new color */
+    overflow-x: hidden;
+    padding-top: 20px;
+    width: 250px; /* Explicitly set width */
+}
+
+.sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 25px;
+    color: var(--white);
+    display: block;
+    background-color: transparent; /* Changed from #E07A5F */
+}
+
+.sidebar a:hover {
+    background-color: #575fcf;
+}
+
+.sidebar a.active {
+    background-color: var(--title-color); /* Uses H2 title color */
+}
+
+#darkModeToggle {
+    background-color: var(--title-color);
+    border: none;
+}
+
+#darkModeToggle:hover {
+    background-color: #16A085; /* A darker version of the title color */
+}
+
+
+/* Main Content Area */
+.content {
+    margin-left: 250px;
+    padding: 20px 40px; /* Added more horizontal padding */
+}
+
+/* Section Titles (H2) */
+h2 {
+    background-color: var(--title-color); /* Use new color */
+    color: var(--white);
+    text-align: center;
+    padding: 15px 0;
+    border-radius: 10px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.project h3,
+h4 {
+    margin-top: 0;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+/* Card Styling (Skills) */
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.skillcard img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.sikillcard-back h4 {
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #343A40;
+    height: 50px;
+    color: #FFF;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: 400;
+    margin-left: 250px; /* Match content margin */
+}
+
+/* Dark Mode */
+body.dark-mode-background {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+body.dark-mode-background .sidebar {
+    background-color: #2C3E50; /* Darker sidebar */
+}
+
+body.dark-mode-background h2 {
+    background-color: #16A085; /* A slightly darker teal */
+}
+
+body.dark-mode-background h4,
+body.dark-mode-background p {
+    color: var(--text-dark);
+}
+
+body.dark-mode-background .description {
+    color: var(--text-dark);
+}
+
+/* Media Query for smaller screens (e.g., tablets and phones) */
+@media (max-width: 768px) {
+    
+    /* Make the sidebar a top bar instead of a left bar */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative; /* Change from fixed */
+        padding-top: 0;
+        display: flex; /* Make links sit side-by-side */
+        flex-wrap: wrap; /* Allow wrapping if needed */
+        justify-content: center;
+    }
+
+    .sidebar a {
+        padding: 15px 20px;
+        font-size: 18px;
+    }
+
+    /* Remove the left margin so content takes full width */
+    .content {
+        margin-left: 0;
+        padding: 15px; /* Reduce padding slightly for small screens */
+    }
+
+    /* Make the footer full-width */
+    footer {
+        margin-left: 0;
+    }
+
+    /* Stack skill cards vertically */
+    .skillcard-container {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
