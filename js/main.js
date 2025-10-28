@@ -42,7 +42,8 @@ document.getElementById("homeButton").addEventListener("click", function (e) {
     //document.getElementById('projectButton').classList.remove("active");
     document.getElementById("home").style.display = "block";
     document.getElementById("personal").style.display = "none";
-    //document.getElementById("projects").style.display = "none";
+    
+    window.location.hash = 'home';
 });
 
 document.getElementById("personalButton").addEventListener("click", function (e) {
@@ -52,7 +53,8 @@ document.getElementById("personalButton").addEventListener("click", function (e)
     //document.getElementById('projectButton').classList.remove("active");
     document.getElementById("home").style.display = "none";
     document.getElementById("personal").style.display = "block";
-    //document.getElementById("projects").style.display = "none";
+    
+    window.location.hash = 'personal';
 });
 
 // Function to show section based on URL hash
