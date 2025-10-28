@@ -153,13 +153,13 @@
             <div class="container">
                 <h2>My Hobbies</h2>
                 <ul>
-                    <li>In my childhood, I loved painting: color painting, oil painting, sketching, etc.</li>
-                    <li>I have always been enjoying movies.</li>
-                    <li>I also love travelling, with myself or with friends/family.</li>
-                    <li>Playing games is also a pleasure for me. I had been one of the WOW (World of Warcraft) players until Blizzard terminated the services of its servers in China.</li>
+                    <li>Since childhood, I have been a fan of painting, this includes: colored painting, oil painting, sketching, etc.</li>
+                    <li>I have always been enjoying movies and anime.</li>
+                    <li>I also love travelling, with myself or with my friends and/or family.</li>
+                    <li>Video games escape me from the trivialities of reality. I love the immersive experiences they provide. Some games I found enjoyable include: Spiritfarer: Farewell Edition, To the Moon, Kingdom Two Crowns, It Takes Two, etc. I had also been one of the WOW (World of Warcraft) players until Blizzard shut down its servers in China.</li>
                 </ul>
                 
-                <h2>My activities (travelling)</h2>
+                <h2>The Ride of a Lifetime</h2>
                 <div class="row">
                     <div class="col-6">
                         <li>(May 2021, in Sanya)</li>
@@ -198,39 +198,31 @@
             
             <div class="container">
                 <h2>Message Board</h2>
-                <div id="message"></div>
-                <div class="row justify-content-end">
-                    <div class="col-2">
-                        <button class="btn btn-primary ms-2" id="addMsg">Leave a comment</button>
-                    </div>
+
+                <div id="messageList" class="mb-3"></div>
+
+                <div class="form-group">
+                    <label for="commentInput">Leave a comment:</label>
+                    <textarea class="form-control" id="commentInput" rows="3"></textarea>
                 </div>
+                <button class="btn btn-primary" id="addMsgBtn">Submit</button>
             </div>
         </section>
         
-        <!-- <section id="projects" style="display:none">
-            <div class="container">
-                <h2>Projects</h2>
-                <div class="project">
-                    <h3>Project 1</h3>
-                    <p>Description of project 1.</p>
-                </div>
-                <div class="project">
-                    <h3>Project 2</h3>
-                    <p>Description of project 2.</p>
-                </div>
-                <div class="project">
-                    <h3>Project 3</h3>
-                    <p>Description of project 3.</p>
-                </div>
-            </div>
-        </section> -->
     </div>
 
+    <a href="#" id="backToTopBtn" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center">
+                <!-- <div class="col-md-12 text-center">
                     Last Update: October, 2025. Contact: jiahao.jiang@mail.mcgill.ca
+                </div> -->
+                <div class="col-md-12 text-center">
+                    &copy; <span id="copyrightYear"></span> Jiahao Jiang. All Rights Reserved.
                 </div>
             </div>
         </div>

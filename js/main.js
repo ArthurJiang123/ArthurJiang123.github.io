@@ -55,25 +55,20 @@ document.getElementById("hobbyButton").addEventListener("click", function (e) {
     //document.getElementById("projects").style.display = "none";
 });
 
-/**
-document.getElementById("projectButton").addEventListener("click", function (e) {
-    e.preventDefault();
-    document.getElementById('projectButton').classList.add("active");
-    document.getElementById('homeButton').classList.remove("active");
-    document.getElementById('hobbyButton').classList.remove("active");
-    document.getElementById("home").style.display = "none";
-    document.getElementById("hobby").style.display = "none";
-    document.getElementById("projects").style.display = "block";
-});
-*/
-
-document.getElementById("addMsg").addEventListener("click", function () {
-    var comment = prompt("Any comment/msg for the website?");
+// New Message Board Logic
+document.getElementById("addMsgBtn").addEventListener("click", function () {
+    var commentInput = document.getElementById("commentInput");
+    // Get text from the textarea
+    var comment = commentInput.value;
+    
     if (comment) {
-        var commentBoard = document.getElementById("message");
-        commentBoard.innerHTML += `<p>${comment} <a href="#" class="remove-msg">[Remove]</a></p>`;
+        var commentBoard = document.getElementById("messageList");
+        // Add the new comment with a remove link
+        commentBoard.innerHTML += `<p class="mb-2">${comment} <a href="#" class="remove-msg text-danger">[Remove]</a></p>`;
+        commentInput.value = ""; // Clear the input field
     }
 });
+
 
 document.addEventListener("click", function (e) {
     if (e.target.classList.contains("remove-msg")) {
@@ -90,3 +85,18 @@ document.getElementById("darkModeToggle").addEventListener("click", function () 
     // update the button text
     this.textContent = isDarkMode ? "Light Mode" : "Dark Mode";
 });
+
+// Set dynamic copyright year in footer
+document.getElementById("copyrightYear").textContent = new Date().getFullYear();
+
+
+var backToTopBtn = document.getElementById("backToTopBtn");
+
+// When the user scrolls down 200px from the top, show the button
+window.onscroll = function() {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        backToTopBtn.style.display = "block";
+    } else {
+        backToTopBtn.style.display = "none";
+    }
+};
