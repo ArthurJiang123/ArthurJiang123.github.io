@@ -38,22 +38,41 @@ document.getElementById('addImage2').addEventListener('click', function () {
 document.getElementById("homeButton").addEventListener("click", function (e) {
     e.preventDefault();
     document.getElementById('homeButton').classList.add("active");
-    document.getElementById('hobbyButton').classList.remove("active");
+    document.getElementById('personalButton').classList.remove("active");
     //document.getElementById('projectButton').classList.remove("active");
     document.getElementById("home").style.display = "block";
-    document.getElementById("hobby").style.display = "none";
+    document.getElementById("personal").style.display = "none";
     //document.getElementById("projects").style.display = "none";
 });
 
-document.getElementById("hobbyButton").addEventListener("click", function (e) {
+document.getElementById("personalButton").addEventListener("click", function (e) {
     e.preventDefault();
-    document.getElementById('hobbyButton').classList.add("active");
+    document.getElementById('personalButton').classList.add("active");
     document.getElementById('homeButton').classList.remove("active");
     //document.getElementById('projectButton').classList.remove("active");
     document.getElementById("home").style.display = "none";
-    document.getElementById("hobby").style.display = "block";
+    document.getElementById("personal").style.display = "block";
     //document.getElementById("projects").style.display = "none";
 });
+
+// Function to show section based on URL hash
+function showSectionFromHash() {
+    const hash = window.location.hash;
+    
+    if (hash === '#personal') {
+        document.getElementById('personalButton').click();
+    } else {
+        // Default to home if hash is empty or #home
+        document.getElementById('homeButton').click();
+    }
+}
+
+// 1. Run when the page first loads
+document.addEventListener('DOMContentLoaded', showSectionFromHash);
+
+// 2. Run when the hash changes (e.g., user hits back/forward button)
+window.addEventListener('hashchange', showSectionFromHash);
+
 
 // New Message Board Logic
 document.getElementById("addMsgBtn").addEventListener("click", function () {
