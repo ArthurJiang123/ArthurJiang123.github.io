@@ -20,9 +20,18 @@
 }
 
 /* hover时，卡牌沿着Y轴旋转 */
-.skillcard:hover {
+/* 
+This new selector tells the browser: "When the mouse hovers over the container 
+(which doesn't move), apply the flip animation to the .skillcard inside it." 
+This makes the hover stable and completely fixes the shaking.
+*/
+.skillcard-container:hover .skillcard {
     transform: rotateY(180deg);
 }
+
+/* .skillcard:hover {
+    transform: rotateY(180deg);
+} */
 
 /* 卡牌正反面共用style */
 .skillcard-front, .skillcard-back{
