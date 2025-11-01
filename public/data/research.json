@@ -1,28 +1,35 @@
 [
   {
-    "title": "Full AI Project",
-    "date": "May 2023 - Present",
+    "title": "McGill Lab: Full AI Project",
+    "date": "May 2023 - May 2024",
     "supervisor": "Supervisor: Prof. Joseph Vybihal",
     "description": [
-      "Collaboraitvely explored a newly proposed AI model, implemented it from scratch, and conducted hospital-delivery simulations.",
-      "Currently contributing to the edition of the paper."
+      "I attended and led weekly seminars to collaboratively study and implement an AI model that aims to simulate higher decision-making capabilities of humans. ",
+      "I implemented the model in Java & Python versions, with a modular and test-driven approach under hospital-delivery simulation.",
+      "I also contributed to the edition of the relevant paper by evaluating and comparing the model with other similar works.",
+      "Status: In progress, so it's still closed-source due to lab policy."
     ]
   },
   {
-    "title": "Healthy UI - Youtube",
+    "title": "McGill Lab: Healthy UI - Youtube",
     "date": "May 2023 - Aug 2023",
     "supervisor": "Supervisor: Prof. Joseph Vybihal",
     "description": [
-      "Designed a UI to moderate extreme video content's impact, receiving over 80% positive survey feedback."
+      "I co-designed a UI with a theoretical algorithm that aims to moderate the impact brought by extreme video content",
+      "The UI combines the traditional tag-based recommendation system with an AI-driven approach to parse user's currently watching video, recommending videos with different perspectives on the same topic. Over 80% subjects voted positively in the survey feedback.",
+      "Tech Stack: HTML, CSS, JavaScript, React, JavaScript, YouTube API, Figma",
+      "Status: In progress, so it's still closed-source due to lab policy."
     ]
   },
   {
-    "title": "Object Avoidance & Motion Planning",
+    "title": "McGill Lab: Object Avoidance & Motion Planning",
     "date": "May 2023 - Aug 2023",
     "supervisor": "Supervisor: Prof. Joseph Vybihal",
     "description": [
-      "Role: Explored and applied modern object avoidance algorithms & approaches.",
-      "Co-implemented the optical-flow algorithm that can give motion recommendations in 4 directions with an accuracy of over 60%."
+      "In this role, I joined as a research student and explored various algorithms and approachs benefiting modern object avoidance and motion planning in dynamic environment.",
+      "My team was supposed to train an AI model using CUDA and PyTorch, but we faced challenges in hardware and time constraints. To deliver the project, I convinced the team to co-implement an optical-flow algorithm with a voting system.",
+      "The algorithm was implemented in both Java and Python and integrated with OpenCV. It can give motion recommendations in 8 directions with an accuracy of over 60%.",
+      "Status: In progress, so it's still closed-source due to lab policy."
     ]
   }
 ]

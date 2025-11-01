@@ -1,12 +1,24 @@
 [
   {
+    "title": "Software Development Engineer Intern",
+    "date": "June 2025 - August 2025",
+    "supervisor": "Amazon",
+    "description": [
+      "I joined Amazon's People Experience Technology (PXT) team to build internal tools that contributes to the organization's operational excellence goals.",
+      "Some of my contributions include building data pipelines and dashboards that enhance client usage visibilities, creating systematic client migration procedure and tools, and resolving tickets for on-call engineers.",
+      "Tech Stack: Java, Python, AWS (Lambda, S3, DynamoDB, CloudWatch, API Gateway, etc.), TypeScript, Node.js, bash."
+    ]
+  }
+  ,
+  {
     "title": "Software Development Intern",
     "date": "June 2024 - August 2024",
     "supervisor": "iSoftStone",
     "description": [
-      "Contributed to developing an automobile insurance system.",
-      "Used Java with Spring, Spring Boot, and MyBatis-Plus for the backend.",
-      "Created user interfaces with HTML, CSS, JavaScript, jQuery and Ajax. Worked with Oracle and MySQL databases."
+      "I worked as a Full-Stack Developer intern under the Financial Innovation Technology department at iSoftStone. In here, I collaborated with one of the enterprise clients to develop the administrator system regarding automobile insurance.",
+      "I was responsible for the full-stack design and implementation of multiple modules, including user management, role management, permission management, and data visualization. I also optimized several existing features to enhance user experience and system performance.",
+      "The project was successfully deployed and is currently in use by the client, receiving positive feedback for its functionality and user-friendly interface.",
+      "Tech Stack: Java, Spring, Spring Boot, MyBatis-Plus, HTML, CSS, JavaScript, Bootstrap, jQuery, Ajax, OracleDB."
     ]
   }
 ]
