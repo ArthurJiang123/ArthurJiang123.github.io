@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Test: My First Blog Post",
+    "date": "November 1, 2025",
+    "file": "my-first-blog.md"
+  },
+  {
+    "title": "Test: My Second Blog Post",
+    "date": "November 1, 2025",
+    "file": "my-second-blog.md"
+  }
+]

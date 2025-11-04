@@ -5,7 +5,8 @@
     --sidebar-color: #34495E; /* Dark Slate Sidebar */
     --title-color: #1ABC9C;   /* Teal Accent (for H2) */
     --text-light: #34495E;    /* Dark Gray Text (on light bg) */
-    --text-dark: #EAECEE;     /* Light Gray Text (on dark bg) */
+    /* --text-dark: #EAECEE;     Light Gray Text (on dark bg) */
+    --text-dark: #E9ECEF;     /* A softer, high-contrast light gray. Much easier on the eyes. */
     --white: #FFFFFF;
 }
 
@@ -16,6 +17,13 @@ body {
     background-color: var(--bg-light); /* Use new color */
     color: var(--text-light);          /* Use new color */
     line-height: 1.6; /* Improved spacing for readability */
+
+    /* making the body a "flex" container, 
+    which forces the content to fill the available space and shoves the footer 
+    to the bottom of the screen */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Sidebar Styling */
@@ -63,6 +71,10 @@ body {
 .content {
     margin-left: 250px;
     padding: 20px 40px; /* Added more horizontal padding */
+    /* making the body a "flex" container, 
+    which forces the content to fill the available space and shoves the footer 
+    to the bottom of the screen */
+    flex: 1; /* Allow content to grow and fill available space */
 }
 
 /* Section Titles (H2) */
@@ -104,7 +116,7 @@ h4 {
 /* Footer */
 footer {
     background-color: #343A40;
-    height: 50px;
+    height: 70px;
     color: #FFF;
     text-align: center;
     padding: 10px 0;
@@ -191,4 +203,28 @@ body.dark-mode-background .description {
         width: 100%;
         margin-bottom: 15px;
     }
+}
+
+/* === DARK MODE MODAL FIX === */
+
+body.dark-mode-background .modal-content {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+body.dark-mode-background .modal-header {
+    border-bottom: 1px solid #495057;
+}
+
+body.dark-mode-background .modal-footer {
+    border-top: 1px solid #495057;
+}
+
+/* Fix for the white "x" close button in the modal */
+body.dark-mode-background .modal-header .close {
+    color: var(--white);
+    text-shadow: none;
+}
+body.dark-mode-background .modal-header .close:hover {
+    color: var(--text-dark);
 }

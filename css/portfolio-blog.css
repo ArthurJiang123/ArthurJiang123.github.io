@@ -1,0 +1,108 @@
+/* === PORTFOLIO STYLING === */
+.project-card .card-img {
+    width: 100%;
+    height: auto;
+    /* It tells the image to 
+    fit inside the box and keep its aspect ratio. 
+    It will never stretch or crop the image. */
+    object-fit: contain;
+    /* If you want smaller images, change this to 150px or 200px. */
+    max-height: 250px;
+    border-radius: 5px;
+}
+
+/* make the image's container a centering-box */
+.project-card .col-md-4 {
+    display: flex;
+    /* centers your image vertically in the container. */
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.project-card .badge-info {
+    background-color: var(--sidebar-color);
+    color: var(--white);
+}
+
+.project-card .card-body {
+    padding: 2rem;
+}
+
+/* Make markdown-generated content look good */
+.project-card .card-text ul {
+    padding-left: 20px;
+    margin-top: 15px;
+}
+
+/* === BLOG STYLING === */
+.blog-post .card {
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.blog-post h2 {
+    background-color: transparent;
+    color: var(--text-light);
+    text-align: left;
+    padding: 0;
+    margin-bottom: 0.5rem;
+}
+
+/* Make markdown-generated content look good */
+.blog-post .card-body p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+}
+
+.blog-post .card-body ul,
+.blog-post .card-body ol {
+    padding-left: 25px;
+    font-size: 1.1rem;
+    margin-bottom: 1.25rem;
+}
+
+.blog-post .card-body code {
+    background-color: #f0f0f0;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+/* Dark mode compatibility */
+body.dark-mode-background .blog-post .card {
+    background-color: var(--bg-dark-2, #3a4b5c); /* A slightly lighter dark */
+    color: var(--text-dark);
+}
+
+body.dark-mode-background .blog-post h2 {
+    color: var(--text-dark);
+}
+
+body.dark-mode-background .blog-post code {
+    background-color: var(--sidebar-color);
+}
+
+/* === DARK MODE PORTFOLIO & BLOG CARD FIX === */
+
+/* Fixes the white background on the project cards */
+body.dark-mode-background .project-card {
+    background-color: var(--sidebar-color);
+    color: var(--text-dark);
+    border: 1px solid #495057;
+}
+
+/* Fixes the white background on the blog list cards */
+body.dark-mode-background .blog-list-card {
+    background-color: var(--sidebar-color);
+    border: 1px solid #495057;
+}
+
+/* Makes sure card titles and subtitles are also light-colored */
+body.dark-mode-background .project-card .card-title,
+body.dark-mode-background .project-card .card-subtitle,
+body.dark-mode-background .blog-list-card .card-title,
+body.dark-mode-background .blog-list-card .card-subtitle {
+    color: var(--text-dark);
+}

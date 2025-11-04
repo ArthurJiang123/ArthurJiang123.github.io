@@ -11,12 +11,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/card-flip.css">
     <link rel="stylesheet" href="css/main.css"> 
+    <link rel="stylesheet" href="css/portfolio-blog.css">
 </head>
 
 <body>
     <div class="sidebar">
         <a href="#home" id="homeButton"><i class="fas fa-home"></i> Home</a>
         <a href="#personal" id="personalButton"><i class="fas fa-user-alt"></i> Personal</a>
+        <a href="#portfolio" id="portfolioButton"><i class="fas fa-briefcase"></i> Portfolio</a>
+        <a href="#blog" id="blogButton"><i class="fas fa-pen-nib"></i> Blog</a>
         <button class="btn btn-primary w-100 mt-3" id="darkModeToggle">dark/light mode</button>
     </div>
 
@@ -26,12 +29,12 @@
                 
 <!-- Introduction Section -->
                 <h2>Profile</h2>
-                <p>Name: Arthur Jiang</p>
+                <p>Name: Jiahao Jiang</p>
                 <p>Email (School): <a href="mailto:jiahao.jiang@mail.mcgill.ca">jiahao.jiang@mail.mcgill.ca</a></p>
                 <p>Email (Work): <a href="mailto:arthurjiang27@gmail.com">arthurjiang27@gmail.com</a></p>
                 <p>Where I live: Waterloo, ON, Canada</p>
                 <p>
-                    <a href="" class="btn btn-secondary" target="_blank">TO BE ADDED: LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/jiahao-jiang-92285921b/" class="btn btn-secondary" target="_blank">LinkedIn</a>
                     <a href="https://github.com/ArthurJiang123" class="btn btn-secondary" target="_blank">GitHub</a>
                 </p>
 <!-- Education Section -->
@@ -196,7 +199,7 @@
                 <h2>The Ride of a Lifetime</h2>
                 <div class="row">
                     <div class="col-6">
-                        <li>(May 2021, in Sanya)</li>
+                        <li>May 2021, in Sanya</li>
                     </div>
                 </div>
                 <div class="row" id="IG1">
@@ -213,7 +216,7 @@
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <li>(July 2022, in Jinan)</li>
+                        <li>July 2022, in Jinan</li>
                     </div>
                 </div>
                 <div class="row" id="IG2">
@@ -237,7 +240,7 @@
                     <strong>Heads-up:</strong> This is a demo message board. 
                     Messages are saved to your local browser only and are not shared with anyone else.
                 </p>
-                
+
                 <div id="messageList" class="mb-3"></div>
 
                 <div class="form-group">
@@ -247,12 +250,47 @@
                 <button class="btn btn-primary" id="addMsgBtn">Submit</button>
             </div>
         </section>
+
+        </section> <section id="portfolio" style="display:none">
+            <div class="container">
+                <h2>Portfolio</h2>
+                <div id="portfolioSection">
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" style="display:none">
+            <div class="container">
+                <h2>(Demo) Blog</h2>
+                <div id="blogSection">
+                </div>
+            </div>
+        </section>
         
     </div>
 
     <a href="#" id="backToTopBtn" title="Go to top">
         <i class="fas fa-arrow-up"></i>
     </a>
+
+    <div class="modal fade" id="blogModal" tabindex="-1" role="dialog" aria-labelledby="blogModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="blogModalTitle">Loading Post...</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="blogModalBody">
+            <p>Loading...</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <footer>
         <div class="container">
@@ -263,6 +301,9 @@
                 <div class="col-md-12 text-center">
                     &copy; <span id="copyrightYear"></span> Jiahao Jiang. All Rights Reserved.
                 </div>
+                <div class="col-md-12 text-center">
+                    Legal Disclaimer: By reading this message, you acknowledge that you are awesome in your own way.
+                </div>
             </div>
         </div>
     </footer>
@@ -270,7 +311,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="js/loadWorkResearch.js"></script>
+     <!-- Showdown library for Markdown to HTML conversion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+    <script src="js/contentLoader.js"></script>
     <script src="js/main.js"></script>
     
 </body>
