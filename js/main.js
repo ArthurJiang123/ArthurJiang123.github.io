@@ -215,11 +215,63 @@ document.addEventListener("click", function (e) {
 });
 
 /* === DARK MODE TOGGLE === */
+// Helper function to apply the theme to the body and update the button text
+function applyTheme(isDark){
+    const body = document.body;
+    const btn = document.getElementById("darkModeToggle");
+
+    if(isDark){
+        // Add the dark mode class to the body
+        body.classList.add("dark-mode-background");
+        // Change button text to indicate we can switch to Light Mode
+        btn.textContent = "Light Mode";   
+    } else {
+
+        // Remove the dark mode class
+        body.classList.remove("dark-mode-background");
+        // Change button text to indicate we can switch to Dark Mode
+        btn.textContent = "Dark Mode";
+    }
+}
+
+// Initialize the theme when the page loads
+function initTheme(){
+    // 1. Check if the user has a saved preference in Local Storage
+    const savedTheme = localStorage.getItem("userTheme");
+
+    if (savedTheme == "dark") {
+        // User previously selected Dark Mode
+        applyTheme(true);
+    } else if (savedTheme == "light") {
+        // User previously selected Light Mode
+        applyTheme(false);
+    } else {
+        // 2. If no saved preference, check the system/OS settings
+        // window.matchMedia checks the user's system preference
+        const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyTheme(systemPrefersDark);
+    }
+}
+
+// Run the initialization on page load
+initTheme();
+
+// Event listener for the toggle button
 document.getElementById("darkModeToggle").addEventListener("click", function () {
-    // toggle the class
-    const isDarkMode = document.body.classList.toggle("dark-mode-background");
-    // update the button text
-    this.textContent = isDarkMode ? "Light Mode" : "Dark Mode";
+    // Check the current theme by looking for the class on the body
+    const isCurrentDark = document.body.classList.contains("dark-mode-background");
+    
+    if (isCurrentDark) {
+        // Switch to Light Mode
+        applyTheme(false);
+        // Save the preference in Local Storage ("userTheme" is the key)
+        localStorage.setItem("userTheme", "light");
+    } else {
+        // Switch to Dark Mode
+        applyTheme(true);
+        // Save the preference in Local Storage
+        localStorage.setItem("userTheme", "dark");
+    }
 });
 
 /* === FOOTER COPYRIGHT YEAR === */
