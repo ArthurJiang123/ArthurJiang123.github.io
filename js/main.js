@@ -113,23 +113,104 @@ window.addEventListener('hashchange', showSectionFromHash);
 
 
 /* === MESSAGE BOARD LOGIC === */
+function loadComments(){
+    // get data with the key "siteMessages".
+    // if empty, default to an empty array []
+    const storedData = localStorage.getItem("siteMessages");
+    // convert the JSON string back to an array type
+    const storedComments = storedData ? JSON.parse(storedData) : [];
+
+    const commentBoard = document.getElementById("messageList");
+    // clear existing messages to avoid duplication
+    commentBoard.innerHTML = '';
+
+    // loop through each comment and add to the board
+    storedComments.forEach((commentText, index) => {
+        addCommentToDOM(commentText, index);
+    });
+
+}
+
+// helper function to add a comment to the DOM (prevents XSS)
+function addCommentToDOM(text, index) {
+    const commentBoard = document.getElementById("messageList");
+    // 1. Create a wrapper div for the comment
+    const msgWrapper = document.createElement("div");
+    msgWrapper.className = "mb-2 comment-item";
+
+    // 2. Create a text node, using "textContent" to prevent XSS attacks
+    const textNode = document.createElement("span");
+    textNode.textContent = text;
+
+    // 3. Create a remove button
+    const deleteBtn = document.createElement("a");
+    deleteBtn.href = "#";
+    deleteBtn.className = "remove-msg text-danger ml-2";
+    deleteBtn.textContent = "[Remove]";
+    // Store the index so we know which comment to delete
+    deleteBtn.dataset.index = index;
+
+    // 4. Assemble the elements: wrapper contains text and button
+    msgWrapper.appendChild(textNode);
+    msgWrapper.appendChild(deleteBtn);
+    
+    // 5. Add the assembled comment to the board
+    commentBoard.appendChild(msgWrapper);
+}
+
+
+// Event Listener for the Submit Button
 document.getElementById("addMsgBtn").addEventListener("click", function () {
     var commentInput = document.getElementById("commentInput");
-    var comment = commentInput.value; // Get text from the textarea
+    var commentText = commentInput.value; // Get text from the textarea
     
-    if (comment) {
-        var commentBoard = document.getElementById("messageList");
-        // Add the new comment with a remove link
-        commentBoard.innerHTML += `<p class="mb-2">${comment} <a href="#" class="remove-msg text-danger">[Remove]</a></p>`;
-        commentInput.value = ""; // Clear the input field
+    if (commentText) {
+        // 1. load the existing comments from localStorage
+        const storedData = localStorage.getItem("siteMessages");
+        const comments = storedData ? JSON.parse(storedData) : [];
+        
+        // 2. Add the new comment to the array and save back to Local Storage
+        comments.push(commentText);
+        localStorage.setItem("siteMessages", JSON.stringify(comments));
+
+        // 3. Update the UI to show the new message
+        addCommentToDOM(commentText, comments.length - 1);
+
+        // 4. Clear the input field
+        commentInput.value = "";
     }
 });
 
+// Load the comments when the page finishes loading
+document.addEventListener("DOMContentLoaded", loadComments);
+
+
 // Listener to remove a message
 document.addEventListener("click", function (e) {
+    // Check if the clicked element is a remove button
     if (e.target.classList.contains("remove-msg")) {
-        e.preventDefault();
-        e.target.parentElement.remove();
+        e.preventDefault(); // prevent default link behavior
+
+        // 1. Get the index of the comment to remove
+        const indexToDelete = e.target.dataset.index;
+        
+        // 2. Load existing comments from localStorage
+        const storedData = localStorage.getItem("siteMessages");
+        const comments = storedData ? JSON.parse(storedData) : [];
+
+        // 3. Remove the comment from the array
+        // Use splice to remove the comment at the specified index
+        if(indexToDelete !== undefined){
+            // splice(starting index, number of items to remove)
+            comments.splice(indexToDelete, 1);
+        }
+
+        // 4. Save the updated array back to localStorage
+        localStorage.setItem("siteMessages", JSON.stringify(comments));
+
+        // 5. Reload the comments to update indices and UI
+        // This ensures the indices are correct after deletion
+        loadComments();
     }
 });
 
