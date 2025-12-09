@@ -59,13 +59,28 @@ function hideAllSections() {
     document.getElementById("blog").style.display = "none";
 }
 
-// Helper function to manage the "active" class on buttons
+// Helper function to 
+// 1. manage the "active" class on buttons
+// 2. update the browser tab title
 function setActiveButton(activeButtonId) {
+    // 1. Remove "active" class from all buttons
     document.getElementById('homeButton').classList.remove("active");
     document.getElementById('personalButton').classList.remove("active");
     document.getElementById('portfolioButton').classList.remove("active");
     document.getElementById('blogButton').classList.remove("active");
     document.getElementById(activeButtonId).classList.add("active");
+
+    // 2. Add active class to the clicked button
+    document.getElementById(activeButtonId).classList.add("active");
+
+    // 3. Update the Browser Tab Title based on selection
+    let pageTitle = "Jiahao's Website"; // Default title
+    if (activeButtonId === "homeButton") pageTitle = "Home | Jiahao";
+    else if (activeButtonId === "personalButton") pageTitle = "Personal | Jiahao";
+    else if (activeButtonId === "portfolioButton") pageTitle = "Portfolio | Jiahao";
+    else if (activeButtonId === "blogButton") pageTitle = "Blog | Jiahao";
+
+    document.title = pageTitle;
 }
 
 // Home Button
