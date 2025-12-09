@@ -65,7 +65,7 @@ function createProjectCard(item) {
                     <div class="mb-3">${techList}</div>
                     <div class="card-text" id="${contentDivId}"><p><em>Loading...</em></p></div>
                     ${item.link ? `
-                    <a href="${item.link}" class="btn btn-primary mt-2" target="_blank">
+                    <a href="${item.link}" class="btn btn-primary mt-2" target="_blank" rel="noopener noreferrer">
                         View on GitHub
                     </a>
                     ` : ''}
