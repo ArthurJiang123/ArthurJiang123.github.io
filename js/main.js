@@ -294,6 +294,7 @@ document.getElementById("copyrightYear").textContent = new Date().getFullYear();
 /* === BACK TO TOP BUTTON === */
 var backToTopBtn = document.getElementById("backToTopBtn");
 
+// Control the visibility of the button based on scroll position
 window.onscroll = function() {
     if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
         backToTopBtn.style.display = "block";
@@ -302,10 +303,20 @@ window.onscroll = function() {
     }
 };
 
+// Click event to scroll to top smoothly without changing the URL hash
+backToTopBtn.addEventListener("click", function(e) {
+    // stops the URL hash from changing to "#"
+    e.preventDefault();
+
+    // Use JavaScript's built-in smooth scroll behavior
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
 
 /* === BLOG MODAL LOADER LOGIC === */
 // This uses jQuery, which is already loaded by Bootstrap
-
 // Create one Showdown converter to reuse
 const markdownConverter = new showdown.Converter();
 
