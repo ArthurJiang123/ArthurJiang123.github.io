@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 /* A modern, professional color palette */
 :root {
     --bg-light: #ECF0F1;      /* Light Gray Background */
