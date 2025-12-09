@@ -1,39 +1,53 @@
 /* === IMAGE GALLERY LOGIC === */
-let IG1Count = 0; // # of pics in IG1
-const IG1 = ['img/sy2.jpg', 'img/sy3.jpg'];
 
-let IG2Count = 0; // # of pics in IG2
-const IG2 = ['img/jn2.jpg', 'img/jn3.jpg'];
+// images for galleries
+const galleryImages1 = ['img/sy2.jpg', 'img/sy3.jpg'];
+const galleryImages2 = ['img/jn2.jpg', 'img/jn3.jpg'];
 
-document.getElementById('addImage1').addEventListener('click', function () {
-    if (IG1Count < 2) {
-        const gallery = document.querySelector('#IG1');
-        const imageElement = `
-            <div class="col-sm-6 col-md-4">
-                <div class="card mb-4">
-                    <img src="${IG1[IG1Count]}" class="card-img-top" alt="sanya${IG1Count + 1}">
+/**
+ * A reusable function to handle gallery loading logic.
+ * @param {string} btnId - The ID of the "See More" button
+ * @param {string} galleryId - The ID of the container where images will be added
+ * @param {Array} imageList - The array of image paths to load
+ */
+function setupGalleryHandler(btnId, galleryId, imageList){
+    let currentIndex = 0; // Track how many images have been added
+    const button = document.getElementById(btnId);
+    const galleryContainer = document.getElementById(galleryId);
+
+    button.addEventListener('click', function(){
+        // Check if there are more images left to show
+        if (currentIndex < imageList.length){
+            // Get the next image path
+            const imgSrc = imageList[currentIndex];
+
+            // Create the HTML structure for the new image card
+            const imageElement = `
+                <div class="col-sm-6 col-md-4">
+                    <div class="card mb-4">
+                        <img src="${imgSrc}" class="card-img-top" alt="gallery image">
+                    </div>
                 </div>
-            </div>
-        `;
-        gallery.innerHTML += imageElement;
-        IG1Count++;
-    }
-});
+            `;
+            // Append the new image card to the container
+            galleryContainer.innerHTML += imageElement;
 
-document.getElementById('addImage2').addEventListener('click', function () {
-    if (IG2Count < 2) {
-        const gallery = document.querySelector('#IG2');
-        const imageElement = `
-            <div class="col-sm-6 col-md-4">
-                <div class="card mb-4">
-                    <img src="${IG2[IG2Count]}" class="card-img-top" alt="jinan${IG2Count + 1}">
-                </div>
-            </div>
-        `;
-        gallery.innerHTML += imageElement;
-        IG2Count++;
-    }
-});
+            // Move to the next index
+            currentIndex++;
+
+            // If we have shown all images, hide the button
+            if (currentIndex >= imageList.length){
+                button.style.display = "none";
+            }
+        }
+    })
+
+
+}
+
+// Initialize the logic for both galleries
+setupGalleryHandler('addImage1', 'IG1', galleryImages1);
+setupGalleryHandler('addImage2', 'IG2', galleryImages2);
 
 /* === NAVIGATION LOGIC === */
 
