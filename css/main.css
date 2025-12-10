@@ -1,131 +1,200 @@
-/* =========================================
-   1. VARIABLES & RESET
-   Defines global colors and basic page settings.
-   ========================================= */
+/* ==========================================================================
+   VARIABLES & THEME CONFIGURATION
+   ========================================================================== */
 
-/* :root is like a global dictionary for your variables */
+/* Syntax: :root
+   Matches the document root element (<html>). 
+   It is the standard scope for declaring global variables. */
 :root {
-    /* Colors */
-    --bg-light: #ECF0F1;      /* Light Gray Background */
-    --bg-dark: #2C3E50;       /* Dark Blue Background (for dark mode) */
-    --sidebar-color: #34495E; /* Dark Slate Sidebar */
-    --title-color: #1ABC9C;   /* Teal Accent */
-    --text-light: #34495E;    /* Dark Gray Text */
-    --text-dark: #E9ECEF;     /* Light Gray Text */
+    /* --variable-name: value;
+       Defines a custom property (variable) for reuse. */
+    
+    --bg-light: #ECF0F1;      /* Light background color */
+    --bg-dark: #2C3E50;       /* Dark background color */
+    --sidebar-color: #34495E; /* Sidebar background */
+    --accent-color: #1ABC9C;  /* Teal accent color */
+    --accent-hover: #16A085;  /* Darker teal for hover state */
+    
+    --text-primary: #34495E;  /* Main text color */
+    --text-light: #E9ECEF;    /* Text color for dark backgrounds */
     --white: #FFFFFF;
     
-    /* Global Borders (used for consistency) */
-    --border-color: #ddd; 
+    --border-color: #ddd;     /* Standard border color */
+    --border-dark: #444;      /* Border color for dark mode */
 }
 
+/* ==========================================================================
+   BASE STYLES & RESET
+   ========================================================================== */
+
+/* Syntax: html
+   Type Selector. Selects the <html> tag. */
 html {
-    scroll-behavior: smooth; /* Makes the page scroll nicely when clicking links */
+    scroll-behavior: smooth; /* Enables smooth animation when jumping to anchors */
 }
 
+/* Syntax: body
+   Type Selector. Selects the <body> tag. */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: var(--bg-light);
-    color: var(--text-light);
-    line-height: 1.6;
-    padding-top: 70px; /* Space for fixed header/sidebar if needed on mobile */
     
-    /* Flex layout to push footer to the bottom */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    /* var(--name)
+       Function that inserts the value of a variable. */
+    background-color: var(--bg-light); 
+    
+    color: var(--text-primary);
+    line-height: 1.6;        /* Sets height of a line box (vertical spacing) */
+    padding-top: 70px;       /* Adds internal space at top for fixed header */
+    
+    display: flex;           /* Initializes Flexbox layout module */
+    flex-direction: column;  /* Stacks flex items vertically */
+    min-height: 100vh;       /* 100vh = 100% of Viewport Height */
 }
 
+/* Syntax: h2
+   Type Selector. Selects all <h2> headings. */
+h2 {
+    background-color: var(--accent-color);
+    color: var(--white);
+    text-align: center;      /* Centers inline content horizontally */
+    padding: 15px 0;         /* 15px vertical padding, 0 horizontal */
+    border-radius: 10px;     /* Rounds the corners */
+    font-weight: 700;        /* Sets font thickness (700 = Bold) */
+    margin: 20px 0 25px 0;   /* Sets margins: Top, Right, Bottom, Left */
+}
 
-/* =========================================
-   2. LAYOUT & SIDEBAR
-   Controls the main structure: Sidebar (Left) + Content (Right).
-   ========================================= */
+/* Syntax: h3, h4
+   Grouping Selector. Applies styles to both <h3> AND <h4>. */
+h3, h4 {
+    margin-top: 0;
+    font-weight: 700;
+    color: var(--text-primary);
+}
 
-/* Fixed Sidebar on the left */
+/* ==========================================================================
+   LAYOUT (SIDEBAR & MAIN CONTENT)
+   ========================================================================== */
+
+/* Syntax: .sidebar
+   Class Selector. Selects elements with class="sidebar". */
 .sidebar {
     height: 100%;
     width: 250px;
-    position: fixed; /* Stays in place when scrolling */
+    
+    /* position: fixed
+       Removes element from flow and pins it relative to the viewport.
+       It stays in place during scrolling. */
+    position: fixed; 
+    
     top: 0;
     left: 0;
-    z-index: 1; /* Stays on top of other content */
+    
+    /* z-index
+       Stack order. Higher numbers sit on top of lower numbers. */
+    z-index: 1000; 
+    
     background-color: var(--sidebar-color);
-    overflow-x: hidden;
+    overflow-x: hidden;      /* Hides content that spills out horizontally */
     padding-top: 20px;
 }
 
-/* Sidebar Links */
+/* Syntax: .sidebar a
+   Descendant Combinator (Space). Selects <a> tags inside .sidebar. */
 .sidebar a {
     padding: 15px 25px;
-    text-decoration: none;
+    text-decoration: none;   /* Removes default underline from links */
     font-size: 25px;
     font-weight: 700;
     color: var(--white);
-    display: block;
-    transition: background-color 0.3s; /* Smooth color change on hover */
+    display: block;          /* Element fills the width of its container */
+    transition: background-color 0.2s ease; /* Smoothly animates property changes */
 }
 
+/* Syntax: .sidebar a:hover
+   Pseudo-class (:hover). Selects the element when mouse is over it. */
 .sidebar a:hover {
     background-color: #575fcf;
 }
 
+/* Syntax: .sidebar a.active
+   Chained Selector. Selects <a> inside .sidebar that ALSO has class="active". */
 .sidebar a.active {
-    background-color: var(--title-color);
+    background-color: var(--accent-color);
 }
 
-/* Toggle Button for Dark Mode (inside Sidebar) */
+/* Syntax: #darkModeToggle
+   ID Selector. Selects the single element with id="darkModeToggle". */
 #darkModeToggle {
-    background-color: var(--title-color);
+    background-color: var(--accent-color);
     border: none;
-    /* inherited styles from sidebar buttons often apply, adding specifics here */
+    transition: background-color 0.2s;
 }
 
 #darkModeToggle:hover {
-    background-color: #16A085;
+    background-color: var(--accent-hover);
 }
 
-/* Main Content Area (pushed right by sidebar) */
+/* Syntax: .content
+   Class Selector for the main wrapper. */
 .content {
-    margin-left: 250px; /* Matches sidebar width */
+    margin-left: 250px;      /* Pushes content right to respect fixed sidebar */
     padding: 20px 40px;
-    flex: 1; /* Takes up all remaining space */
+    flex: 1;                 /* Grow factor. Fills remaining vertical space. */
 }
 
-/* Footer */
+/* Syntax: footer
+   Type Selector. */
 footer {
     background-color: #343A40;
     height: 70px;
     color: var(--white);
     text-align: center;
     padding: 10px 0;
-    margin-left: 250px; /* Matches sidebar width */
+    margin-left: 250px;      /* Aligns with content area */
 }
 
+/* ==========================================================================
+   COMPONENTS
+   ========================================================================== */
 
-/* =========================================
-   3. COMPONENTS
-   Reusable parts: Titles, Cards, Buttons, Modals.
-   ========================================= */
+/* --- Cards & Images --- */
 
-/* Section Headings (H2) */
-h2 {
-    background-color: var(--title-color);
-    color: var(--white);
-    text-align: center;
-    padding: 15px 0;
-    border-radius: 10px;
-    font-weight: 700;
-    margin-top: 20px;
-    margin-bottom: 25px;
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;       /* Crops image to fill dimensions without distortion */
 }
 
-h3, h4 {
-    margin-top: 0;
-    font-weight: 700;
-    color: var(--text-light);
+/* Syntax: .blog-list-card
+   Custom class for blog items. */
+.blog-list-card {
+    height: 100%;            /* Forces card to fill height of grid column */
 }
 
-/* Skill Cards (Flip Cards) Images */
+/* Syntax: .blog-list-card .card-body
+   Descendant Selector. Styles the body inside the blog card. */
+.blog-list-card .card-body {
+    display: flex;
+    flex-direction: column;  /* Stacks title, text, and button vertically */
+    align-items: flex-start; /* Aligns items to the left (prevents button stretching) */
+}
+
+/* Syntax: .blog-list-card .card-title
+   Descendant Selector. Target the title inside the blog card. */
+.blog-list-card .card-title {
+    /* min-height
+       Sets the minimum height of the element.
+       3.2em is roughly 2 lines of text. This ensures the date below starts 
+       at the same vertical position even if the title is short. */
+    min-height: 3.2em;
+}
+
+/* Syntax: .blog-list-card .btn
+   Descendant Selector. select buttons inside blog cards. */
+.blog-list-card .btn {
+    margin-top: auto;        /* Pushes button to the very bottom */
+}
+
 .skillcard img {
     width: 100px;
     height: 100px;
@@ -133,85 +202,112 @@ h3, h4 {
     margin-bottom: 15px;
 }
 
-/* Back to Top Button */
+.cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;         /* Allows items to wrap to next line */
+    justify-content: center; /* Centers items horizontally */
+    gap: 30px;               /* Adds space between flex items */
+    margin-top: 20px;
+}
+
+.skillcard-container {
+    margin: 0 !important;    /* !important: Overrides conflicting rules */
+}
+
+/* --- Markdown Tables --- */
+
+/* Syntax: .modal-body table, .project-card table
+   Grouping Selector. Selects tables inside modals AND tables inside cards. */
+.modal-body table, 
+.project-card table {
+    width: 100%;
+    border-collapse: collapse; /* Merges adjacent borders into single line */
+    margin-bottom: 20px;
+    font-size: 0.95rem;      /* rem: Relative to root html font-size */
+}
+
+.modal-body th, .modal-body td,
+.project-card th, .project-card td {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.modal-body th, .project-card th {
+    background-color: var(--sidebar-color);
+    color: var(--white);
+}
+
+/* Syntax: tr:nth-child(even)
+   Structural Pseudo-class. Selects every even row (2, 4, 6...) for striping. */
+.modal-body tr:nth-child(even), 
+.project-card tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.03); /* rgba: Color with Alpha (transparency) */
+}
+
+/* --- Buttons --- */
+
 #backToTopBtn {
-    display: none;
+    display: none;           /* Hides element from layout */
     position: fixed;
     bottom: 20px;
     right: 30px;
     z-index: 99;
-    background-color: var(--title-color);
-    color: white;
+    background-color: var(--accent-color);
+    color: var(--white);
     border: none;
     border-radius: 10px;
     padding: 2px 10px;
     font-size: 27px;
-    cursor: pointer;
+    cursor: pointer;         /* Shows hand cursor on hover */
 }
 
 #backToTopBtn:hover {
-    background-color: #16A085;
+    background-color: var(--accent-hover);
 }
 
+/* ==========================================================================
+   SECTION SPECIFIC STYLES
+   ========================================================================== */
 
-/* =========================================
-   4. SECTION SPECIFIC STYLES
-   Custom styles for Home, Work, Research, Personal.
-   ========================================= */
+/* --- Education --- */
 
-/* --- Education (Home Section) --- */
+/* Syntax: #home > .container > ul
+   Child Combinator (>). Selects <ul> that is a DIRECT child of .container. */
 #home > .container > ul {
-    list-style: none;
+    list-style: none;        /* Removes default bullets/numbers */
     padding-left: 0;
 }
 
 #home > .container > ul > li {
-    position: relative;
-    padding: 15px;
-    padding-left: 20px;
+    position: relative;      /* Context for absolute positioned children */
+    padding: 15px 15px 15px 20px;
     margin-bottom: 30px;
-    border-left: 3px solid var(--title-color);
+    border-left: 3px solid var(--accent-color); /* Adds colored vertical line */
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 0 8px 8px 0;
 }
 
-/* --- Work & Research (Timeline Style) --- */
-/* Reset list styles for these sections */
-#workSection ul li, 
-#researchSection ul li {
-    background-color: transparent !important;
-    border-left: none !important;
-    border-radius: 0 !important;
-    padding: 0 0 10px 20px !important;
-    margin-bottom: 5px !important;
-}
+/* --- Work & Research --- */
 
-/* The vertical line */
 #workSection ul, 
 #researchSection ul {
-    list-style: none !important;
+    list-style: none;
     padding-left: 10px;
-    border-left: 2px solid var(--title-color);
-    margin-top: 10px;
-    margin-left: 5px;
+    border-left: 2px solid var(--accent-color);
+    margin: 10px 0 0 5px;
 }
 
-/* The dots on the line */
-#workSection ul li::before, 
-#researchSection ul li::before {
-    content: "";
-    position: absolute;
-    left: -7px;
-    top: 6px;
-    width: 12px;
-    height: 12px;
-    background-color: var(--bg-light);
-    border: 2px solid var(--title-color);
-    border-radius: 50%;
+#workSection ul li, 
+#researchSection ul li {
+    padding: 0 0 10px 20px;
+    margin-bottom: 5px;
+    position: relative;
+    /* No pseudo-elements (circles) here, as requested */
 }
 
-/* --- Personal Section (Hobbies & Ride) --- */
-/* Hobbies Pin Icon */
+/* --- Personal --- */
+
 #personal > .container > ul {
     list-style: none;
     padding-left: 0;
@@ -219,21 +315,23 @@ h3, h4 {
 
 #personal > .container > ul > li {
     position: relative;
-    margin-bottom: 12px;
     padding-left: 30px;
+    margin-bottom: 12px;
 }
 
+/* Syntax: ::before
+   Pseudo-element. Creates a fake element before the content. 
+   Used here to insert the Pushpin icon. */
 #personal > .container > ul > li::before {
-    content: "📌"; 
-    position: absolute;
+    content: "📌";           /* Inserts the content string */
+    position: absolute;      /* Pins it relative to the <li> */
     left: 0;
     top: 0;
 }
 
-/* Ride of a Lifetime Location Icon */
-#personal .row ul,
+#personal .row ul, 
 #personal .row li {
-    list-style: none !important;
+    list-style: none;
 }
 
 #personal .row li {
@@ -241,7 +339,7 @@ h3, h4 {
     padding-left: 30px;
     margin-bottom: 10px;
     font-weight: 700;
-    color: var(--title-color);
+    color: var(--text-primary); /* Corrects color to black */
 }
 
 #personal .row li::before {
@@ -251,17 +349,21 @@ h3, h4 {
     top: -2px;
 }
 
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
 
-/* =========================================
-   5. RESPONSIVE DESIGN (Mobile)
-   Adjustments for screens smaller than 768px.
-   ========================================= */
-
+/* Syntax: @media (max-width: 768px)
+   Media Query. Rules inside apply ONLY if screen width is <= 768px. */
 @media (max-width: 768px) {
     .sidebar {
         width: 100%;
         height: auto;
-        position: relative; /* Scrolls with page */
+        
+        /* position: relative
+           Resets sidebar to normal flow (un-pins it from viewport). */
+        position: relative; 
+        
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -274,7 +376,7 @@ h3, h4 {
     }
 
     .content {
-        margin-left: 0; /* Remove side margin */
+        margin-left: 0;      /* Removes left margin on mobile */
         padding: 15px;
     }
 
@@ -283,120 +385,87 @@ h3, h4 {
     }
 
     .skillcard-container {
-        width: 100%; /* Stack cards */
-        margin-bottom: 15px;
+        width: 100%;         /* Cards stack vertically on mobile */
+        margin-bottom: 15px !important;
     }
 }
 
+/* ==========================================================================
+   DARK MODE OVERRIDES
+   ========================================================================== */
 
-/* =========================================
-   6. DARK MODE THEME
-   Overrides colors when body has 'dark-mode-background'.
-   ========================================= */
-
+/* Syntax: body.dark-mode-background
+   Chained Selector. Selects <body> ONLY if it has class "dark-mode-background". 
+   This class is toggled by JS. */
 body.dark-mode-background {
     background-color: var(--bg-dark);
-    color: var(--text-dark);
+    color: var(--text-light);
 }
 
+/* Syntax: body.dark-mode-background .sidebar
+   Contextual Descendant. Selects .sidebar only when Dark Mode is active. */
 body.dark-mode-background .sidebar {
     background-color: #2C3E50;
 }
 
 body.dark-mode-background h2 {
-    background-color: #16A085;
+    background-color: var(--accent-hover);
 }
 
+/* Syntax: body.dark-mode-background element
+   Grouping Selector. Updates text color for multiple elements in Dark Mode. */
 body.dark-mode-background h4,
 body.dark-mode-background p,
-body.dark-mode-background .description {
-    color: var(--text-dark);
+body.dark-mode-background .description,
+body.dark-mode-background #workSection ul li,
+body.dark-mode-background #researchSection ul li {
+    color: var(--text-light);
 }
 
-/* Modal Dark Mode Fix */
+/* Education cards in Dark Mode */
+body.dark-mode-background #home > .container > ul > li {
+    background-color: rgba(255, 255, 255, 0.05); /* Faint background */
+    color: var(--text-light);
+}
+
+/* Personal section text in Dark Mode */
+body.dark-mode-background #personal .row li {
+    color: var(--text-light);
+}
+
+/* Modals & Tables in Dark Mode */
 body.dark-mode-background .modal-content {
     background-color: var(--bg-dark);
-    color: var(--text-dark);
+    color: var(--text-light);
 }
+
 body.dark-mode-background .modal-header,
 body.dark-mode-background .modal-footer {
     border-color: #495057;
 }
+
 body.dark-mode-background .modal-header .close {
     color: var(--white);
     text-shadow: none;
 }
 
-/* Section Specific Dark Mode Fixes */
-body.dark-mode-background #home > .container > ul > li {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: var(--text-dark);
-}
-
-body.dark-mode-background #workSection ul li,
-body.dark-mode-background #researchSection ul li {
-    color: var(--text-dark);
-}
-
-body.dark-mode-background #workSection ul li::before,
-body.dark-mode-background #researchSection ul li::before {
-    background-color: var(--bg-dark); 
-}
-
-/* =========================================
-   7. MARKDOWN TABLE STYLING
-   Makes tables in blog posts look professional.
-   ========================================= */
-
-/* Target tables inside Modals (Blog) and Portfolio cards */
-.modal-body table,
-.project-card table {
-    width: 100%;
-    border-collapse: collapse; /* Merges borders for a clean look */
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-}
-
-/* Header and Cells */
-.modal-body th, .modal-body td,
-.project-card th, .project-card td {
-    padding: 12px 15px;
-    border: 1px solid var(--border-color); /* Use your global border color */
-    text-align: left;
-}
-
-/* Header Specifics */
-.modal-body th,
-.project-card th {
-    background-color: var(--sidebar-color); /* Use your sidebar color */
-    color: var(--white);
-    font-weight: 700;
-}
-
-/* Stripes for readability (Zebra striping) */
-.modal-body tr:nth-child(even),
-.project-card tr:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.03);
-}
-
-/* Dark Mode Adjustments */
 body.dark-mode-background .modal-body table,
 body.dark-mode-background .project-card table {
-    color: var(--text-dark);
+    color: var(--text-light);
 }
 
 body.dark-mode-background .modal-body th,
 body.dark-mode-background .project-card th {
-    background-color: #1a252f; /* Darker header for dark mode */
-    border-color: #444;
+    background-color: #1a252f;
+    border-color: var(--border-dark);
 }
 
 body.dark-mode-background .modal-body td,
 body.dark-mode-background .project-card td {
-    border-color: #444;
+    border-color: var(--border-dark);
 }
 
 body.dark-mode-background .modal-body tr:nth-child(even),
 body.dark-mode-background .project-card tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.05); /* Light stripe for dark mode */
+    background-color: rgba(255, 255, 255, 0.05);
 }
