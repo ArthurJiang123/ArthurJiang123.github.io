@@ -232,3 +232,121 @@ body.dark-mode-background .modal-header .close {
 body.dark-mode-background .modal-header .close:hover {
     color: var(--text-dark);
 }
+/* =========================================
+   FINAL LIST STYLING (Complete Fixed Version)
+   ========================================= */
+
+/* --- 1. Education Section (Vertical Line Card Style) --- */
+/* Target only the direct ul under #home to avoid affecting work/research */
+#home > .container > ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#home > .container > ul > li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 30px;
+    border-left: 3px solid var(--title-color); /* Colorful vertical line on the left */
+    background-color: rgba(255, 255, 255, 0.5); /* Light background */
+    padding: 15px;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Dark Mode Adjustment for Education Cards */
+body.dark-mode-background #home > .container > ul > li {
+    background-color: rgba(255, 255, 255, 0.05); /* Very faint semi-transparent white */
+    color: var(--text-dark);
+}
+
+
+/* --- 2. Work & Research Section (Timeline Style) --- */
+
+/* Reset: Force override of any card styles inherited from Education */
+#workSection ul li, 
+#researchSection ul li {
+    background-color: transparent !important; /* Remove white background block */
+    border-left: none !important;             /* Remove thick left line */
+    border-radius: 0 !important;
+    padding: 0 0 10px 20px !important;        /* Adjust inner padding */
+    margin-bottom: 5px !important;            /* Reduce spacing */
+}
+
+/* Enable Timeline Line */
+#workSection ul, 
+#researchSection ul {
+    list-style: none !important;
+    padding-left: 10px;
+    border-left: 2px solid var(--title-color); /* Thin timeline line */
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+/* Dots on the Timeline */
+#workSection ul li::before, 
+#researchSection ul li::before {
+    content: "";
+    position: absolute;
+    left: -7px; /* Position on the line */
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background-color: var(--bg-light); /* Match background color */
+    border: 2px solid var(--title-color);
+    border-radius: 50%;
+}
+
+/* Dark Mode Adaptation: Dots background needs to match dark bg */
+body.dark-mode-background #workSection ul li::before,
+body.dark-mode-background #researchSection ul li::before {
+    background-color: var(--bg-dark); 
+}
+body.dark-mode-background #workSection ul li,
+body.dark-mode-background #researchSection ul li {
+    color: var(--text-dark);
+}
+
+
+/* --- 3. My Hobbies Section (Restored Pin Icon) --- */
+
+#personal > .container > ul {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+}
+
+#personal > .container > ul > li {
+    margin-bottom: 12px;
+    padding-left: 30px; /* Leave space for the icon */
+    position: relative;
+}
+
+#personal > .container > ul > li::before {
+    content: "📌"; 
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+
+/* --- 4. Ride of a Lifetime Section (Location Icon) --- */
+
+#personal .row ul,
+#personal .row li {
+    list-style: none !important; /* Completely remove bullets */
+}
+
+#personal .row li {
+    position: relative;
+    padding-left: 30px; /* Leave space for the icon */
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: var(--title-color);
+}
+
+/* Add Location Icon */
+#personal .row li::before {
+    content: "📍"; 
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
