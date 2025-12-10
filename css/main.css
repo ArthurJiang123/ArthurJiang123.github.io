@@ -31,6 +31,7 @@
    Type Selector. Selects the <html> tag. */
 html {
     scroll-behavior: smooth; /* Enables smooth animation when jumping to anchors */
+    background-color: var(--bg-light); /* Sets base background to match theme */
 }
 
 /* Syntax: body
@@ -146,10 +147,13 @@ h3, h4 {
    Type Selector. */
 footer {
     background-color: #343A40;
-    height: 70px;
     color: var(--white);
     text-align: center;
-    padding: 10px 0;
+    
+    /* padding
+       Provides internal spacing. Replaces fixed height to allow text wrapping. */
+    padding: 20px 0;
+    
     margin-left: 250px;      /* Aligns with content area */
 }
 
@@ -176,21 +180,20 @@ footer {
 .blog-list-card .card-body {
     display: flex;
     flex-direction: column;  /* Stacks title, text, and button vertically */
-    align-items: flex-start; /* Aligns items to the left (prevents button stretching) */
+    align-items: flex-start; /* Aligns items to the left */
 }
 
 /* Syntax: .blog-list-card .card-title
    Descendant Selector. Target the title inside the blog card. */
 .blog-list-card .card-title {
     /* min-height
-       Sets the minimum height of the element.
-       3.2em is roughly 2 lines of text. This ensures the date below starts 
-       at the same vertical position even if the title is short. */
+       Sets the minimum height. 3.2em equals roughly 2 lines of text. 
+       Ensures alignment across cards with different title lengths. */
     min-height: 3.2em;
 }
 
 /* Syntax: .blog-list-card .btn
-   Descendant Selector. select buttons inside blog cards. */
+   Descendant Selector. Selects buttons inside blog cards. */
 .blog-list-card .btn {
     margin-top: auto;        /* Pushes button to the very bottom */
 }
@@ -303,7 +306,6 @@ footer {
     padding: 0 0 10px 20px;
     margin-bottom: 5px;
     position: relative;
-    /* No pseudo-elements (circles) here, as requested */
 }
 
 /* --- Personal --- */
@@ -339,7 +341,7 @@ footer {
     padding-left: 30px;
     margin-bottom: 10px;
     font-weight: 700;
-    color: var(--text-primary); /* Corrects color to black */
+    color: var(--text-primary);
 }
 
 #personal .row li::before {
@@ -356,6 +358,12 @@ footer {
 /* Syntax: @media (max-width: 768px)
    Media Query. Rules inside apply ONLY if screen width is <= 768px. */
 @media (max-width: 768px) {
+    /* Syntax: body
+       Removes top padding on mobile to prevent white bar gap. */
+    body {
+        padding-top: 0;
+    }
+
     .sidebar {
         width: 100%;
         height: auto;
@@ -382,11 +390,35 @@ footer {
 
     footer {
         margin-left: 0;
+        /* padding-bottom
+           Adds extra padding at bottom to account for iOS Home Indicator (Safe Area). */
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    /* Syntax: #backToTopBtn
+       Moves the button up on mobile screens so it doesn't cover footer text. */
+    #backToTopBtn {
+        bottom: 90px;
     }
 
     .skillcard-container {
         width: 100%;         /* Cards stack vertically on mobile */
         margin-bottom: 15px !important;
+    }
+    
+    /* Syntax: .skillcard
+       Centers the card itself within its container on mobile screens. */
+    .skillcard {
+        margin: 0 auto;
+    }
+
+    /* Syntax: #personal .row .col-6
+       Descendant Selector. Targets the half-width columns in the Personal section. */
+    #personal .row .col-6 {
+        /* flex: 0 0 100%
+           Forces the column to take up 100% of the row width, preventing text wrap. */
+        flex: 0 0 100%;
+        max-width: 100%;
     }
 }
 
