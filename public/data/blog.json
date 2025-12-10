@@ -1,12 +1,12 @@
 [
   {
-    "title": "Test: My First Blog Post",
+    "title": "#1 Test: My First Blog Post",
     "date": "November 1, 2025",
-    "file": "my-first-blog.md"
+    "file": "blog1-test.md"
   },
   {
-    "title": "Test: My Second Blog Post",
-    "date": "November 1, 2025",
-    "file": "my-second-blog.md"
+    "title": "#2 CSS Cheat Sheet: what I used to build this website",
+    "date": "December 10, 2025",
+    "file": "blog2-CSS-cheat-sheet.md"
   }
 ]
