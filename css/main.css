@@ -342,3 +342,61 @@ body.dark-mode-background #workSection ul li::before,
 body.dark-mode-background #researchSection ul li::before {
     background-color: var(--bg-dark); 
 }
+
+/* =========================================
+   7. MARKDOWN TABLE STYLING
+   Makes tables in blog posts look professional.
+   ========================================= */
+
+/* Target tables inside Modals (Blog) and Portfolio cards */
+.modal-body table,
+.project-card table {
+    width: 100%;
+    border-collapse: collapse; /* Merges borders for a clean look */
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+/* Header and Cells */
+.modal-body th, .modal-body td,
+.project-card th, .project-card td {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color); /* Use your global border color */
+    text-align: left;
+}
+
+/* Header Specifics */
+.modal-body th,
+.project-card th {
+    background-color: var(--sidebar-color); /* Use your sidebar color */
+    color: var(--white);
+    font-weight: 700;
+}
+
+/* Stripes for readability (Zebra striping) */
+.modal-body tr:nth-child(even),
+.project-card tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode-background .modal-body table,
+body.dark-mode-background .project-card table {
+    color: var(--text-dark);
+}
+
+body.dark-mode-background .modal-body th,
+body.dark-mode-background .project-card th {
+    background-color: #1a252f; /* Darker header for dark mode */
+    border-color: #444;
+}
+
+body.dark-mode-background .modal-body td,
+body.dark-mode-background .project-card td {
+    border-color: #444;
+}
+
+body.dark-mode-background .modal-body tr:nth-child(even),
+body.dark-mode-background .project-card tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05); /* Light stripe for dark mode */
+}

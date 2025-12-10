@@ -108,7 +108,8 @@ function createBlogPost(item) {
 // New function to fetch Markdown and convert it
 function fetchMarkdown(filePath, targetElementId) {
     // Init Showdown converter
-    const converter = new showdown.Converter();
+    // Enable tables option
+    const converter = new showdown.Converter({ tables: true });
 
     fetch(filePath)
         .then(response => {

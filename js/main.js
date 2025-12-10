@@ -333,7 +333,8 @@ backToTopBtn.addEventListener("click", function(e) {
 /* === BLOG MODAL LOADER LOGIC === */
 // This uses jQuery, which is already loaded by Bootstrap
 // Create one Showdown converter to reuse
-const markdownConverter = new showdown.Converter();
+// Enable tables option
+const markdownConverter = new showdown.Converter({ tables: true });
 
 $('#blogModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Button that triggered the modal
