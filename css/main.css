@@ -1,56 +1,68 @@
-html {
-    scroll-behavior: smooth;
-}
+/* =========================================
+   1. VARIABLES & RESET
+   Defines global colors and basic page settings.
+   ========================================= */
 
-/* A modern, professional color palette */
+/* :root is like a global dictionary for your variables */
 :root {
+    /* Colors */
     --bg-light: #ECF0F1;      /* Light Gray Background */
     --bg-dark: #2C3E50;       /* Dark Blue Background (for dark mode) */
     --sidebar-color: #34495E; /* Dark Slate Sidebar */
-    --title-color: #1ABC9C;   /* Teal Accent (for H2) */
-    --text-light: #34495E;    /* Dark Gray Text (on light bg) */
-    /* --text-dark: #EAECEE;     Light Gray Text (on dark bg) */
-    --text-dark: #E9ECEF;     /* A softer, high-contrast light gray. Much easier on the eyes. */
+    --title-color: #1ABC9C;   /* Teal Accent */
+    --text-light: #34495E;    /* Dark Gray Text */
+    --text-dark: #E9ECEF;     /* Light Gray Text */
     --white: #FFFFFF;
+    
+    /* Global Borders (used for consistency) */
+    --border-color: #ddd; 
+}
+
+html {
+    scroll-behavior: smooth; /* Makes the page scroll nicely when clicking links */
 }
 
 body {
     font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    padding-top: 70px;
-    background-color: var(--bg-light); /* Use new color */
-    color: var(--text-light);          /* Use new color */
-    line-height: 1.6; /* Improved spacing for readability */
-
-    /* making the body a "flex" container, 
-    which forces the content to fill the available space and shoves the footer 
-    to the bottom of the screen */
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    line-height: 1.6;
+    padding-top: 70px; /* Space for fixed header/sidebar if needed on mobile */
+    
+    /* Flex layout to push footer to the bottom */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* Sidebar Styling */
+
+/* =========================================
+   2. LAYOUT & SIDEBAR
+   Controls the main structure: Sidebar (Left) + Content (Right).
+   ========================================= */
+
+/* Fixed Sidebar on the left */
 .sidebar {
     height: 100%;
-    position: fixed;
-    z-index: 1;
+    width: 250px;
+    position: fixed; /* Stays in place when scrolling */
     top: 0;
     left: 0;
-    background-color: var(--sidebar-color); /* Use new color */
+    z-index: 1; /* Stays on top of other content */
+    background-color: var(--sidebar-color);
     overflow-x: hidden;
     padding-top: 20px;
-    width: 250px; /* Explicitly set width */
 }
 
+/* Sidebar Links */
 .sidebar a {
     padding: 15px 25px;
     text-decoration: none;
-    font-weight: 700;
     font-size: 25px;
+    font-weight: 700;
     color: var(--white);
     display: block;
-    background-color: transparent; /* Changed from #E07A5F */
+    transition: background-color 0.3s; /* Smooth color change on hover */
 }
 
 .sidebar a:hover {
@@ -58,32 +70,46 @@ body {
 }
 
 .sidebar a.active {
-    background-color: var(--title-color); /* Uses H2 title color */
+    background-color: var(--title-color);
 }
 
+/* Toggle Button for Dark Mode (inside Sidebar) */
 #darkModeToggle {
     background-color: var(--title-color);
     border: none;
+    /* inherited styles from sidebar buttons often apply, adding specifics here */
 }
 
 #darkModeToggle:hover {
-    background-color: #16A085; /* A darker version of the title color */
+    background-color: #16A085;
 }
 
-
-/* Main Content Area */
+/* Main Content Area (pushed right by sidebar) */
 .content {
-    margin-left: 250px;
-    padding: 20px 40px; /* Added more horizontal padding */
-    /* making the body a "flex" container, 
-    which forces the content to fill the available space and shoves the footer 
-    to the bottom of the screen */
-    flex: 1; /* Allow content to grow and fill available space */
+    margin-left: 250px; /* Matches sidebar width */
+    padding: 20px 40px;
+    flex: 1; /* Takes up all remaining space */
 }
 
-/* Section Titles (H2) */
+/* Footer */
+footer {
+    background-color: #343A40;
+    height: 70px;
+    color: var(--white);
+    text-align: center;
+    padding: 10px 0;
+    margin-left: 250px; /* Matches sidebar width */
+}
+
+
+/* =========================================
+   3. COMPONENTS
+   Reusable parts: Titles, Cards, Buttons, Modals.
+   ========================================= */
+
+/* Section Headings (H2) */
 h2 {
-    background-color: var(--title-color); /* Use new color */
+    background-color: var(--title-color);
     color: var(--white);
     text-align: center;
     padding: 15px 0;
@@ -93,19 +119,13 @@ h2 {
     margin-bottom: 25px;
 }
 
-.project h3,
-h4 {
+h3, h4 {
     margin-top: 0;
     font-weight: 700;
     color: var(--text-light);
 }
 
-/* Card Styling (Skills) */
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
-}
-
+/* Skill Cards (Flip Cards) Images */
 .skillcard img {
     width: 100px;
     height: 100px;
@@ -113,131 +133,33 @@ h4 {
     margin-bottom: 15px;
 }
 
-.sikillcard-back h4 {
-    margin-bottom: 10px;
-}
-
-/* Footer */
-footer {
-    background-color: #343A40;
-    height: 70px;
-    color: #FFF;
-    text-align: center;
-    padding: 10px 0;
-    font-weight: 400;
-    margin-left: 250px; /* Match content margin */
-}
-
-/* Dark Mode */
-body.dark-mode-background {
-    background-color: var(--bg-dark);
-    color: var(--text-dark);
-}
-
-body.dark-mode-background .sidebar {
-    background-color: #2C3E50; /* Darker sidebar */
-}
-
-body.dark-mode-background h2 {
-    background-color: #16A085; /* A slightly darker teal */
-}
-
-body.dark-mode-background h4,
-body.dark-mode-background p {
-    color: var(--text-dark);
-}
-
-body.dark-mode-background .description {
-    color: var(--text-dark);
-}
-
+/* Back to Top Button */
 #backToTopBtn {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stays in place */
+    display: none;
+    position: fixed;
     bottom: 20px;
     right: 30px;
     z-index: 99;
-    border: none;
-    outline: none;
     background-color: var(--title-color);
     color: white;
-    cursor: pointer;
-    padding: 2px 10px;
+    border: none;
     border-radius: 10px;
+    padding: 2px 10px;
     font-size: 27px;
+    cursor: pointer;
 }
 
 #backToTopBtn:hover {
-    background-color: #16A085; /* Darker teal */
+    background-color: #16A085;
 }
 
 
-/* Media Query for smaller screens (e.g., tablets and phones) */
-@media (max-width: 768px) {
-    
-    /* Make the sidebar a top bar instead of a left bar */
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative; /* Change from fixed */
-        padding-top: 0;
-        display: flex; /* Make links sit side-by-side */
-        flex-wrap: wrap; /* Allow wrapping if needed */
-        justify-content: center;
-    }
-
-    .sidebar a {
-        padding: 15px 20px;
-        font-size: 18px;
-    }
-
-    /* Remove the left margin so content takes full width */
-    .content {
-        margin-left: 0;
-        padding: 15px; /* Reduce padding slightly for small screens */
-    }
-
-    /* Make the footer full-width */
-    footer {
-        margin-left: 0;
-    }
-
-    /* Stack skill cards vertically */
-    .skillcard-container {
-        width: 100%;
-        margin-bottom: 15px;
-    }
-}
-
-/* === DARK MODE MODAL FIX === */
-
-body.dark-mode-background .modal-content {
-    background-color: var(--bg-dark);
-    color: var(--text-dark);
-}
-
-body.dark-mode-background .modal-header {
-    border-bottom: 1px solid #495057;
-}
-
-body.dark-mode-background .modal-footer {
-    border-top: 1px solid #495057;
-}
-
-/* Fix for the white "x" close button in the modal */
-body.dark-mode-background .modal-header .close {
-    color: var(--white);
-    text-shadow: none;
-}
-body.dark-mode-background .modal-header .close:hover {
-    color: var(--text-dark);
-}
 /* =========================================
-   FINAL LIST STYLING (Complete Fixed Version)
+   4. SECTION SPECIFIC STYLES
+   Custom styles for Home, Work, Research, Personal.
    ========================================= */
 
-/* --- 1. Education Section (Vertical Line Card Style) --- */
-/* Target only the direct ul under #home to avoid affecting work/research */
+/* --- Education (Home Section) --- */
 #home > .container > ul {
     list-style: none;
     padding-left: 0;
@@ -245,79 +167,60 @@ body.dark-mode-background .modal-header .close:hover {
 
 #home > .container > ul > li {
     position: relative;
+    padding: 15px;
     padding-left: 20px;
     margin-bottom: 30px;
-    border-left: 3px solid var(--title-color); /* Colorful vertical line on the left */
-    background-color: rgba(255, 255, 255, 0.5); /* Light background */
-    padding: 15px;
+    border-left: 3px solid var(--title-color);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 0 8px 8px 0;
 }
 
-/* Dark Mode Adjustment for Education Cards */
-body.dark-mode-background #home > .container > ul > li {
-    background-color: rgba(255, 255, 255, 0.05); /* Very faint semi-transparent white */
-    color: var(--text-dark);
-}
-
-
-/* --- 2. Work & Research Section (Timeline Style) --- */
-
-/* Reset: Force override of any card styles inherited from Education */
+/* --- Work & Research (Timeline Style) --- */
+/* Reset list styles for these sections */
 #workSection ul li, 
 #researchSection ul li {
-    background-color: transparent !important; /* Remove white background block */
-    border-left: none !important;             /* Remove thick left line */
+    background-color: transparent !important;
+    border-left: none !important;
     border-radius: 0 !important;
-    padding: 0 0 10px 20px !important;        /* Adjust inner padding */
-    margin-bottom: 5px !important;            /* Reduce spacing */
+    padding: 0 0 10px 20px !important;
+    margin-bottom: 5px !important;
 }
 
-/* Enable Timeline Line */
+/* The vertical line */
 #workSection ul, 
 #researchSection ul {
     list-style: none !important;
     padding-left: 10px;
-    border-left: 2px solid var(--title-color); /* Thin timeline line */
+    border-left: 2px solid var(--title-color);
     margin-top: 10px;
     margin-left: 5px;
 }
 
-/* Dots on the Timeline */
+/* The dots on the line */
 #workSection ul li::before, 
 #researchSection ul li::before {
     content: "";
     position: absolute;
-    left: -7px; /* Position on the line */
+    left: -7px;
     top: 6px;
     width: 12px;
     height: 12px;
-    background-color: var(--bg-light); /* Match background color */
+    background-color: var(--bg-light);
     border: 2px solid var(--title-color);
     border-radius: 50%;
 }
 
-/* Dark Mode Adaptation: Dots background needs to match dark bg */
-body.dark-mode-background #workSection ul li::before,
-body.dark-mode-background #researchSection ul li::before {
-    background-color: var(--bg-dark); 
-}
-body.dark-mode-background #workSection ul li,
-body.dark-mode-background #researchSection ul li {
-    color: var(--text-dark);
-}
-
-
-/* --- 3. My Hobbies Section (Restored Pin Icon) --- */
-
+/* --- Personal Section (Hobbies & Ride) --- */
+/* Hobbies Pin Icon */
 #personal > .container > ul {
-    list-style: none; /* Remove default bullets */
+    list-style: none;
     padding-left: 0;
 }
 
 #personal > .container > ul > li {
-    margin-bottom: 12px;
-    padding-left: 30px; /* Leave space for the icon */
     position: relative;
+    margin-bottom: 12px;
+    padding-left: 30px;
 }
 
 #personal > .container > ul > li::before {
@@ -327,26 +230,115 @@ body.dark-mode-background #researchSection ul li {
     top: 0;
 }
 
-
-/* --- 4. Ride of a Lifetime Section (Location Icon) --- */
-
+/* Ride of a Lifetime Location Icon */
 #personal .row ul,
 #personal .row li {
-    list-style: none !important; /* Completely remove bullets */
+    list-style: none !important;
 }
 
 #personal .row li {
     position: relative;
-    padding-left: 30px; /* Leave space for the icon */
+    padding-left: 30px;
     margin-bottom: 10px;
     font-weight: 700;
     color: var(--title-color);
 }
 
-/* Add Location Icon */
 #personal .row li::before {
     content: "📍"; 
     position: absolute;
     left: 0;
     top: -2px;
+}
+
+
+/* =========================================
+   5. RESPONSIVE DESIGN (Mobile)
+   Adjustments for screens smaller than 768px.
+   ========================================= */
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative; /* Scrolls with page */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 0;
+    }
+
+    .sidebar a {
+        padding: 15px 20px;
+        font-size: 18px;
+    }
+
+    .content {
+        margin-left: 0; /* Remove side margin */
+        padding: 15px;
+    }
+
+    footer {
+        margin-left: 0;
+    }
+
+    .skillcard-container {
+        width: 100%; /* Stack cards */
+        margin-bottom: 15px;
+    }
+}
+
+
+/* =========================================
+   6. DARK MODE THEME
+   Overrides colors when body has 'dark-mode-background'.
+   ========================================= */
+
+body.dark-mode-background {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+body.dark-mode-background .sidebar {
+    background-color: #2C3E50;
+}
+
+body.dark-mode-background h2 {
+    background-color: #16A085;
+}
+
+body.dark-mode-background h4,
+body.dark-mode-background p,
+body.dark-mode-background .description {
+    color: var(--text-dark);
+}
+
+/* Modal Dark Mode Fix */
+body.dark-mode-background .modal-content {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+body.dark-mode-background .modal-header,
+body.dark-mode-background .modal-footer {
+    border-color: #495057;
+}
+body.dark-mode-background .modal-header .close {
+    color: var(--white);
+    text-shadow: none;
+}
+
+/* Section Specific Dark Mode Fixes */
+body.dark-mode-background #home > .container > ul > li {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-dark);
+}
+
+body.dark-mode-background #workSection ul li,
+body.dark-mode-background #researchSection ul li {
+    color: var(--text-dark);
+}
+
+body.dark-mode-background #workSection ul li::before,
+body.dark-mode-background #researchSection ul li::before {
+    background-color: var(--bg-dark); 
 }
