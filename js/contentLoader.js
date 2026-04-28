@@ -11,104 +11,201 @@ document.getElementById('collapseAllWork').addEventListener('click', () => setAl
 document.getElementById('expandAllResearch').addEventListener('click', () => setAllDescriptions('researchSection', true));
 document.getElementById('collapseAllResearch').addEventListener('click', () => setAllDescriptions('researchSection', false));
 
-/* === HTML "TEMPLATE" FUNCTIONS === */
+function sanitizeHtml(html) {
+    if (typeof DOMPurify !== 'undefined') {
+        return DOMPurify.sanitize(html);
+    }
+    return html;
+}
 
-// Template for Work & Research
+/* === HTML BUILDERS (DOM APIs to avoid XSS from JSON) === */
+
 function createCollapse(item) {
     const itemEl = document.createElement('div');
-    itemEl.classList.add("mb-3");
-    const descriptionList = item.description.map(point => `<li>${point}</li>`).join('');
-    itemEl.innerHTML = `
-        <div class="d-flex justify-content-between align-items-center">
-            <div>
-                <h4 class="mb-0">${item.title}</h4>
-                <p class="mb-0">${item.date}</p>
-            </div>
-            <button class="btn btn-link toggleDescription">Show More</button>
-        </div>
-        <div class="description mt-2" style="display: none;">
-            <p><strong>${item.supervisor}</strong></p>
-            <ul>${descriptionList}</ul>
-        </div>
-    `;
-    itemEl.querySelector('.toggleDescription').addEventListener('click', function () {
-        const desc = itemEl.querySelector('.description');
-        const isHidden = desc.style.display == 'none';
-        desc.style.display = isHidden ? 'block' : 'none';
-        this.textContent = isHidden ? 'Show Less' : 'Show More';
+    itemEl.classList.add('mb-3');
+
+    const headerRow = document.createElement('div');
+    headerRow.className = 'd-flex justify-content-between align-items-center';
+
+    const titleBlock = document.createElement('div');
+    const h4 = document.createElement('h4');
+    h4.className = 'mb-0';
+    h4.textContent = item.title;
+    const dateP = document.createElement('p');
+    dateP.className = 'mb-0';
+    dateP.textContent = item.date;
+    titleBlock.appendChild(h4);
+    titleBlock.appendChild(dateP);
+
+    const toggleBtn = document.createElement('button');
+    toggleBtn.type = 'button';
+    toggleBtn.className = 'btn btn-link toggleDescription';
+    toggleBtn.textContent = 'Show More';
+
+    headerRow.appendChild(titleBlock);
+    headerRow.appendChild(toggleBtn);
+
+    const desc = document.createElement('div');
+    desc.className = 'description mt-2';
+    desc.style.display = 'none';
+
+    const supervisorP = document.createElement('p');
+    const strong = document.createElement('strong');
+    strong.textContent = item.supervisor;
+    supervisorP.appendChild(strong);
+
+    const ul = document.createElement('ul');
+    (item.description || []).forEach(function (point) {
+        const li = document.createElement('li');
+        li.textContent = point;
+        ul.appendChild(li);
     });
+
+    desc.appendChild(supervisorP);
+    desc.appendChild(ul);
+
+    itemEl.appendChild(headerRow);
+    itemEl.appendChild(desc);
+
+    toggleBtn.addEventListener('click', function () {
+        const isHidden = desc.style.display === 'none';
+        desc.style.display = isHidden ? 'block' : 'none';
+        toggleBtn.textContent = isHidden ? 'Show Less' : 'Show More';
+    });
+
     return itemEl;
 }
 
-// Template for Portfolio Projects
 function createProjectCard(item) {
     const itemEl = document.createElement('div');
-    itemEl.classList.add("project-card", "card", "mb-4");
+    itemEl.classList.add('project-card', 'card', 'mb-4');
 
-    const techList = item.technologies.map(tech => 
-        `<span class="badge badge-info mr-1">${tech}</span>`
-    ).join('');
+    const row = document.createElement('div');
+    row.className = 'row no-gutters';
 
-    const contentDivId = `project-content-${item.file.replace('.md', '')}`;
+    if (item.image) {
+        const imgCol = document.createElement('div');
+        imgCol.className = 'col-md-4';
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.className = 'card-img';
+        img.alt = (item.title || 'Project') + ' preview';
+        imgCol.appendChild(img);
+        row.appendChild(imgCol);
+    }
 
-    itemEl.innerHTML = `
-        <div class="row no-gutters">
-            ${item.image ? `
-            <div class="col-md-4">
-                <img src="${item.image}" class="card-img" alt="${item.title} preview">
-            </div>
-            ` : ''}
-            <div class="${item.image ? 'col-md-8' : 'col-md-12'}">
-                <div class="card-body">
-                    <h3 class="card-title">${item.title}</h3>
-                    <h6 class="card-subtitle mb-2 text-muted">${item.date}</h6>
-                    <div class="mb-3">${techList}</div>
-                    <div class="card-text" id="${contentDivId}"><p><em>Loading...</em></p></div>
-                    ${item.link ? `
-                    <a href="${item.link}" class="btn btn-primary mt-2" target="_blank" rel="noopener noreferrer">
-                        View on GitHub
-                    </a>
-                    ` : ''}
-                </div>
-            </div>
-        </div>
-    `;
+    const bodyCol = document.createElement('div');
+    bodyCol.className = item.image ? 'col-md-8' : 'col-md-12';
 
-    // Fetch Markdown content for the description
-    fetchMarkdown(`public/portfolio/${item.file}`, contentDivId);
+    const cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+
+    const titleEl = document.createElement('h3');
+    titleEl.className = 'card-title';
+    titleEl.textContent = item.title;
+
+    const dateEl = document.createElement('h6');
+    dateEl.className = 'card-subtitle mb-2 text-muted';
+    dateEl.textContent = item.date;
+
+    const techWrap = document.createElement('div');
+    techWrap.className = 'mb-3';
+    (item.technologies || []).forEach(function (tech) {
+        const badge = document.createElement('span');
+        badge.className = 'badge badge-info mr-1';
+        badge.textContent = tech;
+        techWrap.appendChild(badge);
+    });
+
+    const baseId = String(item.file || '')
+        .replace(/\.md$/i, '')
+        .replace(/[^a-zA-Z0-9_-]/g, '_');
+    const contentDivId = 'project-content-' + baseId;
+
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'card-text';
+    contentDiv.id = contentDivId;
+    const loadingP = document.createElement('p');
+    const em = document.createElement('em');
+    em.textContent = 'Loading...';
+    loadingP.appendChild(em);
+    contentDiv.appendChild(loadingP);
+
+    cardBody.appendChild(titleEl);
+    cardBody.appendChild(dateEl);
+    cardBody.appendChild(techWrap);
+    cardBody.appendChild(contentDiv);
+
+    if (item.link && /^https?:\/\//i.test(String(item.link).trim())) {
+        const link = document.createElement('a');
+        link.href = String(item.link).trim();
+        link.className = 'btn btn-primary mt-2';
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = 'View on GitHub';
+        cardBody.appendChild(link);
+    }
+
+    bodyCol.appendChild(cardBody);
+    row.appendChild(bodyCol);
+    itemEl.appendChild(row);
+
+    fetchMarkdown('public/portfolio/' + item.file, contentDivId);
     return itemEl;
 }
 
-// Template for Blog Posts (UPDATED)
+function blogSlugFromFile(file) {
+    return String(file).replace(/\.md$/i, '');
+}
+
 function createBlogPost(item) {
     const itemEl = document.createElement('div');
-    // We use .col-md-6 to put two cards side-by-side on medium screens
-    itemEl.classList.add("col-md-6", "mb-4");
+    itemEl.classList.add('col-md-6', 'mb-4');
 
-    itemEl.innerHTML = `
-        <div class="card blog-list-card">
-            <div class="card-body">
-                <h4 class="card-title">${item.title}</h4>
-                <p class="card-subtitle mb-2 text-muted"><em>Posted on: ${item.date}</em></p>
-                <button class="btn btn-primary" 
-                        data-toggle="modal" 
-                        data-target="#blogModal" 
-                        data-file="public/blog/${item.file}" 
-                        data-title="${item.title}">
-                    Read Article
-                </button>
-            </div>
-        </div>
-    `;
+    const card = document.createElement('div');
+    card.className = 'card blog-list-card';
+
+    const cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+
+    const slug = blogSlugFromFile(item.file);
+
+    const titleEl = document.createElement('h4');
+    titleEl.className = 'card-title';
+    const titleLink = document.createElement('a');
+    titleLink.href = '#/blog/' + encodeURIComponent(slug);
+    titleLink.textContent = item.title;
+    titleEl.appendChild(titleLink);
+
+    const sub = document.createElement('p');
+    sub.className = 'card-subtitle mb-2 text-muted';
+    const em = document.createElement('em');
+    em.textContent = 'Posted on: ' + item.date;
+    sub.appendChild(em);
+
+    const readBtn = document.createElement('button');
+    readBtn.type = 'button';
+    readBtn.className = 'btn btn-primary';
+    readBtn.setAttribute('data-toggle', 'modal');
+    readBtn.setAttribute('data-target', '#blogModal');
+    readBtn.setAttribute('data-file', 'public/blog/' + item.file);
+    readBtn.setAttribute('data-title', item.title);
+    readBtn.setAttribute('data-slug', slug);
+    readBtn.setAttribute('data-date', item.date || '');
+    readBtn.textContent = 'Read Article';
+
+    cardBody.appendChild(titleEl);
+    cardBody.appendChild(sub);
+    cardBody.appendChild(readBtn);
+    card.appendChild(cardBody);
+    itemEl.appendChild(card);
+
     return itemEl;
 }
 
 /* === ASYNC CONTENT LOADER FUNCTIONS === */
 
-// New function to fetch Markdown and convert it
 function fetchMarkdown(filePath, targetElementId) {
-    // Init Showdown converter
-    // Enable tables option
     const converter = new showdown.Converter({ tables: true });
 
     fetch(filePath)
@@ -119,17 +216,25 @@ function fetchMarkdown(filePath, targetElementId) {
             return response.text();
         })
         .then(markdownText => {
-            // Convert and display
-            const htmlContent = converter.makeHtml(markdownText);
-            document.getElementById(targetElementId).innerHTML = htmlContent;
+            const htmlContent = sanitizeHtml(converter.makeHtml(markdownText));
+            const el = document.getElementById(targetElementId);
+            if (el) {
+                el.innerHTML = htmlContent;
+            }
         })
         .catch(error => {
-            document.getElementById(targetElementId).innerHTML = "<p class='text-danger'>Error loading content.</p>";
+            const el = document.getElementById(targetElementId);
+            if (el) {
+                const p = document.createElement('p');
+                p.className = 'text-danger';
+                p.textContent = 'Error loading content.';
+                el.innerHTML = '';
+                el.appendChild(p);
+            }
             console.error(error);
         });
 }
 
-// Main function to load JSON and "route" to the correct template
 function loadContent(sectionID, jsonFileName) {
     fetch(jsonFileName)
         .then(response => {
@@ -144,8 +249,8 @@ function loadContent(sectionID, jsonFileName) {
             if (sectionID === 'blogSection') {
                 section.classList.add('row');
             }
-            
-            section.innerHTML = ''; // Clear "loading" text
+
+            section.innerHTML = '';
 
             data.forEach(item => {
                 let element;
@@ -163,8 +268,15 @@ function loadContent(sectionID, jsonFileName) {
             });
         })
         .catch(error => {
-            console.error("Error loading content list:", error);
-            document.getElementById(sectionID).innerHTML = "<p class='text-danger'>Error loading content list.</p>";
+            console.error('Error loading content list:', error);
+            const section = document.getElementById(sectionID);
+            if (section) {
+                const p = document.createElement('p');
+                p.className = 'text-danger';
+                p.textContent = 'Error loading content list.';
+                section.innerHTML = '';
+                section.appendChild(p);
+            }
         });
 }
 
